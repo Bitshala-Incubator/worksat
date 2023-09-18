@@ -1,12 +1,18 @@
-import Image from 'next/image'
+import Link from "next/link";
+import Login from "./pages/login/page";
+import Home from "./pages/home/page";
 
-export default function Home() {
+export default function App() {
   return (
-   
-   <>
-   <div className='flex justify-center'>
-   <div className='text-5xl text-gray-300 font-sans font-bold'>Upsats</div>
-   </div>
-   </>
-  )
+    <>
+      <div className="flex justify-center ">
+        <div className="flex-col">
+          <Link href='/pages/login'>
+            <Login />
+          </Link>
+          <Home />
+        </div>
+      </div>
+    </>
+  );
 }
