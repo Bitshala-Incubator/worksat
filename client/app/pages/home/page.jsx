@@ -1,41 +1,34 @@
 import Link from "next/link";
 import React from "react";
+import { Tabs, Tab } from "./tabs";
+import LookForDevs from "./lookForDevs";
+import BrowseForJobs from "./browseJobs";
 
 const Home = () => {
   return (
     <div>
-      <input placeholder="search" className="text-black" />
-      <div className="flex justify-between">
-        {/* Small note, these two will be buttons */}
+      {/* <div className="flex justify-between mt-10">
         <Link href="/pages/postJob">
           <div>Post a Job</div>
         </Link>
         <Link href="/pages/devs">
           <div className="pl-3"> Look For Developers</div>
         </Link>
-      </div>
-      
-      <div>Jobs List</div>
-      <div className="mb-6">
-        <li>job 1</li>
-        <li>job 2</li>
-        <li>job3</li>
-        <li>job 4</li>
-      </div>
-      <Link href="/pages/browseJobs" className="bg-gray-600 p-3 rounded-lg">
-        Expand for more jobs
-      </Link>
+      </div> */}
 
-      <div className="mt-5">
-        We can probably show off some developer profiles here maybe?
-      </div>
-      <div className="flex ">
-        <div className="p-2 bg-red-300 rounded-lg m-3">dev 1</div>
-        <div className="p-2 bg-red-300 rounded-lg m-3">dev 2</div>
-        <div className="p-2 bg-red-300 rounded-lg m-3">dev 3</div>
-        <div className="p-2 bg-red-300 rounded-lg m-3">dev 4</div>
-      </div>
-      <div className="mt-5">Footer ??</div>
+      <Tabs>
+        <Tab label="Browse For Jobs">
+          <div className="py-4">
+            <BrowseForJobs />
+          </div>
+        </Tab>
+        <Tab label="Look For Developers">
+          <div className="py-4">
+            <LookForDevs />
+          </div>
+        </Tab>
+      </Tabs>
+      <div className="text-center bg-gray-600 py-20 text-white">Footer</div>
     </div>
   );
 };

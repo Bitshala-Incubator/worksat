@@ -37,7 +37,7 @@ const Login = () => {
     <>
      {user == null ? (
         <div  onClick={navigateLogin}>
-          <h4 >Login</h4>
+          <div className="bg-red-400 p-3 rounded-lg">Login</div>
         </div>
         ) : (
         <div onClick={navigateLogout}>
