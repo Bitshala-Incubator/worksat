@@ -7,9 +7,10 @@ const BrowseJobs = () => {
       <div className="flex justify-center">
         <div className="text-5xl">Browse Jobs</div>
       </div>
+
       <div className=" flex mt-10 justify-center">
         <div className="flex-col">
-          <input placeholder="Look for jobs" className="text-black" />
+          <input placeholder="Search" className="text-black" />
           <div>Filter</div>
           <div className="flex border-white border-2 p-5 m-3" >
             <Link href='/pages/companyDetail'>

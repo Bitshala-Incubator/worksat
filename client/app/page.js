@@ -7,15 +7,18 @@ import Home from "./pages/home/page";
 export default function App() {
   return (
     <>
-      <div className="flex justify-center ">
-        <div className="flex justify-center ">
-          <div className="flex-col">
-            <Link href="/pages/login">
-              <Login />
-            </Link>
-            <Home />
+      <div className="flex justify-between mt-3 mb-5">
+        <div className="bg-red-400 p-3 rounded-lg">Icon</div>
+        <div className="flex">
+          <div className="bg-red-400 p-3 rounded-lg">Post a job</div>
+
+          <div className="mx-3">
+            <Login />
           </div>
         </div>
+      </div>
+      <div>
+        <Home />
       </div>
     </>
   );
