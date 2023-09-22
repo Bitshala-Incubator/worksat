@@ -1,5 +1,5 @@
 # upsats
-upwork clone in ln/nostr
+For bitcoin worker and gigs, sign in and payment via ln/nostr
 
 ## Roadmap 
 
