@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: "http://localhost:5173",
         credentials: true,
     })
 );
@@ -68,13 +68,13 @@ app.get('/login',
 	function(req, res, next) {
 		if (req.user) {
 			// Already authenticated.
-			return res.redirect('http://localhost:3000/');
+			return res.redirect('http://localhost:5173	/');
 		}
 		next();
 	},
 	new LnurlAuth.Middleware({
 		callbackUrl: config.url + '/login',
-		cancelUrl: "http://localhost:3000/",
+		cancelUrl: "http://localhost:5173/",
         loginTemplateFilePath: path.join(__dirname, 'login.html'),
 	})
 );
@@ -89,7 +89,7 @@ app.get('/logout',
             req.session.destroy();
             res.json({message: "user logged out"});
 			// Already authenticated.
-			return res.redirect('http://localhost:3000/');
+			return res.redirect('http://localhost:5173/');
 		}
 		next();
 	});
