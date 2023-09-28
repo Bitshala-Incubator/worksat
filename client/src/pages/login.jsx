@@ -1,9 +1,6 @@
 import React from "react";
-// import Link from "next/link";
-// import Login from "./pages/login/page";
+
 import { useState } from "react";
-// import Home from "./pages/home/page";
-import { MdLogin, MdLogout } from "react-icons/md";
 
 
 
@@ -31,7 +28,6 @@ const Login = () => {
 
 
 
-  // need to integrate lightning login here!
   return (
     <>
      {user == null ? (
