@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Modal from "react-modal";
+import NavBar from "../components/navbar";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 const PostJob = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  let subtitle;
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div className="flex flex-col">
+      <div className="flex justify-between mb-3">
+        <Link to="/">
+          <div>Logo</div>
+        </Link>
+        <div className="flex">
+          {/* <Login /> */}
+          <Link to="/devProfile">
+            <div className="bg-red-400 p-3 rounded-lg mx-3">Developer</div>
+          </Link>
+        </div>
+      </div>
       <form>
         <div className="my-1">Company Name</div>
         <input className="border-black bg-gray-700 text-white p-2" />
@@ -51,15 +92,40 @@ const PostJob = () => {
         <div>Upload company logo</div>
         <input className="" type="file" id="formFile" />
 
-
         <div>Job Description</div>
         <input className="border-black bg-gray-700 text-white p-2" />
 
         <div>Benifits</div>
-        <div>
+        <div>Various Benifit options</div>
 
-        </div>
+        <Link>
+          <button
+            className="bg-red-400 px-3 py-2 mt-5 rounded-lg"
+            onClick={openModal}
+          >
+            Next
+          </button>
+        </Link>
 
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+          <button onClick={closeModal}>close</button>
+          <div>I am a modal</div>
+          <p>The payment Page will go here</p>
+          {/* A Flag will go here if the payment gets successful, and the job will be posted. But i need some idea on the payment modal layout. */}
+          <button
+            className="bg-red-400 px-3 py-2 mt-5 rounded-lg"
+            onClick={closeModal}
+          >
+            close
+          </button>
+        </Modal>
       </form>
     </div>
   );

@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
-import Home from "./pages/home.jsx";
-import BrowseDevs from "./components/browseDevs.jsx";
 import PostJob from "./pages/postJob.jsx";
 import Login from "./pages/login.jsx";
+import DevProfile from "./pages/devProfile.jsx";
+import JobDetail from "./pages/jobDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/devProfile",
+    element: <DevProfile />,
+  },
+  {
+    path: "/jobDetail",
+    element: <JobDetail />,
   },
 ]);
 

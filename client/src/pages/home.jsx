@@ -4,11 +4,12 @@ import BrowseDevs from "../components/browseDevs";
 import BrowseJobs from "../components/browseJobs";
 import Login from './login'
 import { Link } from "react-router-dom";
+import NavBar from "../components/navbar";
 
 const Home = () => {
   return (
     <div>
-      <Login/>
+      {/* <NavBar/> */}
       <Tabs>
         <Tab label="Browse For Jobs">
           <div className="py-4">

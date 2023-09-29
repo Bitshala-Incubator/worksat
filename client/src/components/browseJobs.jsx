@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BrowseJobs = () => {
   return (
@@ -11,29 +12,26 @@ const BrowseJobs = () => {
         <div className="flex-col">
           <input placeholder="Search" className="text-black" />
           <div>Filter</div>
-          <div className="flex border-white border-2 p-5 m-3" >
+          <div className="flex border-white border-2 p-5 m-3">
             {/* <Link href='/pages/companyDetail'> */}
             <div>Company logo</div>
             {/* </Link> */}
             <div className="flex-col">
               {/* <Link href="/pages/jobDetails"> */}
-                <div className="mx-3 font-bold text-2xl">Job Detail</div>
+              <div className="mx-3 font-bold text-2xl">Job Detail</div>
               {/* </Link> */}
               <div className="mx-3">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Sapiente, labore!
               </div>
             </div>
-            <div className="bg-red-300 p-3 rounded-lg m-3">Apply</div>
+            <Link to='/jobDetail'>
+              <div className="bg-red-300 p-3 rounded-lg m-3">See Details</div>
+            </Link>
           </div>
-          
-          
         </div>
       </div>
-      <div className="text-center">
-      and so on.........
-
-      </div>
+      <div className="text-center">and so on.........</div>
     </div>
   );
 };
