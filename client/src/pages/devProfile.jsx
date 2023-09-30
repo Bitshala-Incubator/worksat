@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 const DevProfile = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  let subtitle;
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <>
       <div className="flex justify-between mb-3">
@@ -9,9 +36,9 @@ const DevProfile = () => {
           <div>Logo</div>
         </Link>
         <div className="flex">
-        <Link to="/#">
+          <Link to="/#">
             <div className="bg-red-400 p-3 rounded-lg mx-3">Edit Profile</div>
-          </Link>  
+          </Link>
           <Link to="/postJob">
             <div className="bg-red-400 p-3 rounded-lg mx-3">Post a job</div>
           </Link>
@@ -78,9 +105,31 @@ const DevProfile = () => {
             </p>
           </div>
 
-          <div className="bg-red-400 p-3 rounded-lg mx-3 mt-5 mb-10">
+          <div
+            className="bg-red-400 p-3 rounded-lg mx-3 mt-5 mb-10"
+            onClick={openModal}
+          >
             Unlock Contact Section
           </div>
+
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+            <button onClick={closeModal}>close</button>
+            <p>The payment Page will go here</p>
+            {/* A Flag will go here if the payment gets successful, and the contact detail will be revealed */}
+            <button
+              className="bg-red-400 px-3 py-2 mt-5 rounded-lg"
+              onClick={closeModal}
+            >
+              close
+            </button>
+          </Modal>
         </div>
       </div>
     </>

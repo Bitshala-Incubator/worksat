@@ -2,7 +2,7 @@ import React from "react";
 import { Tabs, Tab } from "../components/tabs";
 import BrowseDevs from "../components/browseDevs";
 import BrowseJobs from "../components/browseJobs";
-import Login from './login'
+import Login from "./login";
 import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
 
