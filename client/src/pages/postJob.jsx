@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import NavBar from "../components/navbar";
+import Select from "react-select";
 
 const customStyles = {
   content: {
@@ -14,8 +15,18 @@ const customStyles = {
   },
 };
 
+const optionList = [
+  { value: "rust", label: "Rust" },
+  { value: "javascript", label: "Javascript" },
+  { value: "typescript", label: "Typescript" },
+  { value: "react.js", label: "React.js" },
+  { value: "angular.js", label: "Angular.js" },
+];
+
 const PostJob = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState();
+
   let subtitle;
 
   function openModal() {
@@ -29,6 +40,10 @@ const PostJob = () => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function handleSelect(data) {
+    setSelectedOptions(data);
   }
 
   return (
@@ -78,15 +93,17 @@ const PostJob = () => {
         </div>
 
         <div className="my-1">TAGS, KEYWORDS OR STACK</div>
-        <div className="my-1">
-          <select className="p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
-            <option>Rust</option>
-            <option>Java</option>
-            <option>Javascript</option>
-            <option>React</option>
-            <option>Node</option>
-            <option>Next</option>
-          </select>
+
+        <div className="flex justify-center">
+          <Select
+            className="w-80 "
+            options={optionList}
+            placeholder="Select Stack"
+            value={selectedOptions}
+            onChange={handleSelect}
+            isSearchable={true}
+            isMulti
+          />
         </div>
 
         <div>Upload company logo</div>

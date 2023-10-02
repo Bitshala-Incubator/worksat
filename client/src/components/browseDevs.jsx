@@ -1,5 +1,6 @@
 // import Link from "next/link";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BrowseDevs = () => {
   return (
@@ -20,10 +21,10 @@ const BrowseDevs = () => {
           <div className="border-2">
             <div className="flex justify-between m-5">
               {/* <Link href='/pages/devProfile'> */}
-                <div>image</div>
+              <div>image</div>
               {/* </Link> */}
               {/* <Link href='/pages/devProfile'> */}
-                <div>Name/ Pseudonym</div>
+              <div>Name/ Pseudonym</div>
               {/* </Link> */}
             </div>
             <div className="m-5 p-3">
@@ -38,7 +39,9 @@ const BrowseDevs = () => {
               <li className="bg-red-300 p-5 m-2 rounded-lg">rust</li>
             </div>
             <div className="flex justify-center m-5">
-              <div className="bg-red-400 p-5 rounded-lg">Contact</div>
+              <Link to="/devProfile">
+                <div className="bg-red-400 p-5 rounded-lg">Contact</div>
+              </Link>
             </div>
           </div>
           <div className="text-center mt-5">and so on....</div>
