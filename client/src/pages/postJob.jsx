@@ -66,7 +66,7 @@ const PostJob = () => {
         <div className="my-1">Position</div>
         <input className="border-black bg-gray-700 text-white p-2" />
 
-        <div className="my-1"> Time Frame</div>
+        <div className="my-1"> Employment Type</div>
         <div className="my-1">
           <select className="p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
             <option>Full Time</option>
@@ -79,7 +79,7 @@ const PostJob = () => {
           </select>
         </div>
 
-        <div className="my-1">Primary Tag</div>
+        <div className="my-1">Role</div>
         <div className="my-1">
           <select className="p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
             <option>Software Development</option>
@@ -92,7 +92,7 @@ const PostJob = () => {
           </select>
         </div>
 
-        <div className="my-1">TAGS, KEYWORDS OR STACK</div>
+        <div className="my-1">Skills</div>
 
         <div className="flex justify-center">
           <Select
