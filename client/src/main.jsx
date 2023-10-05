@@ -7,6 +7,9 @@ import PostJob from "./pages/postJob.jsx";
 import Login from "./pages/login.jsx";
 import DevProfile from "./pages/devProfile.jsx";
 import JobDetail from "./pages/jobDetail.jsx";
+import BrowseJobs from "./pages/browseJobs.jsx";
+import BrowseDevs from "./pages/browseDevs.jsx";
+import NavBar from "./components/navbar.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,14 @@ const router = createBrowserRouter([
   {
     path: "/jobDetail",
     element: <JobDetail />,
+  },
+  {
+    path: "/browseJobs",
+    element: <BrowseJobs />,
+  },
+  {
+    path: "/browseDevs",
+    element: <BrowseDevs />,
   },
 ]);
 
