@@ -1,99 +1,139 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Sidebar from "../components/sidebar";
+import NavBar from "../components/navbar";
+
+const Main = () => {
+  return (
+    <>
+      <div className="flex flex-col bg-white items-start m-5 p-5">
+        <div className="text-3xl md:text-5xl font-bold">
+          Senior UI UX Designer
+        </div>
+        <div className="flex">
+          <div className="py-3 px-2">Engineering</div>
+          <div className="py-3 px-2">Full time</div>
+        </div>
+        <hr className=" w-full h-px" />
+        <div className="px-2 py-3 justify-start flex flex-col items-start">
+          <div className="text-2xl font-semibold items-start my-3">
+            The Company
+          </div>
+          <div className="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+            consequatur voluptatibus quasi, illo dolorum aspernatur, neque
+            commodi distinctio, a inventore eveniet iusto consequuntur. Sunt,
+            corporis voluptates provident, consectetur quod dicta magnam iure
+            eius, voluptatem excepturi cum recusandae nesciunt! Lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Provident minima
+            dolorem nam! Et recusandae eos fuga, perferendis molestiae placeat
+            porro.
+          </div>
+
+          <div className="text-2xl font-semibold items-start mt-6 mb-3">
+            The Role
+          </div>
+          <div className="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+            consequatur voluptatibus quasi, illo dolorum aspernatur, neque
+            commodi distinctio, a inventore eveniet iusto consequuntur. Sunt,
+            corporis voluptates provident, consectetur quod dicta magnam iure
+            eius, voluptatem excepturi cum recusandae nesciunt! Lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Provident minima
+            dolorem nam! Et recusandae eos fuga, perferendis molestiae placeat
+            porro.
+          </div>
+
+          <div className="text-2xl font-semibold items-start mt-6 mb-3">
+            Your Responsibilities
+          </div>
+          <div className="text-start">
+            <li>
+              Knowledge of OAuth and SAML authentication standards preferred
+            </li>
+            <li>
+              Experience supporting multi-vendor software-as-a-service (SaaS)
+              applications
+            </li>
+            <li>
+              Evaluate, select and integrate 3rd party products in the support
+              of new or existing services
+            </li>
+            <li>Experience working with Cloud Applications desired</li>
+            <li>
+              Strong ability to effectively multitask and prioritize work,
+              juggling daily support responsibilities with multiple{" "}
+            </li>
+            <li>project/product-driven activities.</li>
+            <li>Strong troubleshooting and problem-solving skills</li>
+            <li>Scripting and automation experience desired</li>
+            <li>
+              Solid ability to work independently or as part of a team to
+              deliver features on agreed-upon timelines.
+            </li>
+            <li>You love to own product from design to implementation</li>
+          </div>
+
+          <div className="text-2xl font-semibold items-start mt-6 mb-3">
+            How To Apply
+          </div>
+          <div className="text-start">
+            If you’d like to apply for this job, please email your CV and cover
+            letter to jobs@bolt.fun. Thank you!
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const Right = () => {
+  const [openRoles, setOpenRoles] = useState(true);
+  const [openType, setOpenType] = useState(true);
+  const [openLocation, setOpenLocation] = useState(true);
+  return (
+    <>
+      <div>
+        <div>
+          <div>
+            <div className={` h-screen p-5 pt-8 duration-300 w-80  relative`}>
+              <div className="bg-white p-5 m-3  border rounded-lg text-start">
+                <div className="flex flex-col justify-between">
+                  <div className="text-2xl font-semibold">Bolt.Fun</div>
+                  <div>Poisted 3 months ago</div>
+                </div>
+
+                <div className="mt-3">Share this job</div>
+                <div className="flex justify-start">
+                  <div className="m-2">f</div>
+                  <div className="m-2">i</div>
+                  <div className="m-2">x</div>
+                </div>
+                <div className="bg-[#8b5cf6] flex justify-center py-1 rounded-lg text-white">
+                  Apply
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const JobDetail = () => {
   return (
     <>
-      <div className="flex justify-between mb-3">
-        <Link to="/">
-          <div>Logo</div>
-        </Link>
-        <div className="flex">
-          <Link to="/postJob">
-            <div className="bg-red-400 p-3 rounded-lg mx-3">Post a job</div>
-          </Link>
-          {/* <Login /> */}
-          <Link to="/devProfile">
-            <div className="bg-red-400 p-3 rounded-lg mx-3">Developer</div>
-          </Link>
+      {/* <NavBar /> */}
+      <div className="flex">
+        <div className="hidden lg:inline">
+          <Sidebar />
         </div>
-      </div>
-      <div className="flex flex-col">
-        <dev className="text-3xl">Company is hiring a</dev>
-        <dev className="text-5xl">Job Role</dev>
-
-        <div>
-          Job detail Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Rem dolores, ad eum error magni laudantium tempore quia. Esse deleniti
-          officia debitis. Amet quia possimus neque est repellat aspernatur
-          officia perspiciatis.
+        <div className="flex w-full">
+          <Main />
         </div>
-
-        <div>Qualifications:</div>
-        <div className="flex justify-center">
-          <div className="bg-gray-300 max-w-3xl p-5 rounded-lg m-5">
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum
-              laboriosam voluptate quisquam amet unde accusantium blanditiis,
-              dolor at dicta ducimus adipisci facilis voluptatibus nam vel
-              cupiditate ipsa quo odit quibusdam.
-            </ul>
-          </div>
-        </div>
-
-        <div>What's in for you? :</div>
-        <div className="flex justify-center">
-          <div className="bg-gray-300 max-w-3xl p-5 rounded-lg m-5">
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero,
-              unde quia! Iure veniam deleniti cumque esse quaerat laudantium
-              reprehenderit unde assumenda excepturi, enim neque adipisci rem.
-              Nobis quaerat nihil possimus.
-            </ul>
-          </div>
-        </div>
-
-        <div>Salary</div>
-        <div>$70,000 — $120,000/year</div>
-
-        <div className="bg-red-400 p-3 rounded-lg mx-3 mb-10 mt-3">
-          Apply now
+        <div className="hidden lg:inline">
+          <Right />
         </div>
       </div>
     </>
