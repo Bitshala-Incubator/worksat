@@ -10,37 +10,7 @@ import Sidebar from "../components/sidebar";
 const Home = () => {
   return (
     <div>
-      <div className="flex">
-        <Sidebar />
-
-        <div className="p-7">Home Page</div>
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-      
-
-      {/* <NavBar/>
-      <Tabs>
-        <Tab label="Browse For Jobs">
-          <div className="py-4">
-            <BrowseJobs />
-          </div>
-        </Tab>
-        <Tab label="Look For Developers">
-          <div className="py-4">
-            <BrowseDevs />
-          </div>
-        </Tab>
-      </Tabs> */}
+      <BrowseJobs />
     </div>
   );
 };

@@ -9,29 +9,106 @@ const Rightbar = () => {
     <div>
       <div>
         <div
-          className={`bg-white h-screen p-5 pt-8 duration-300 w-72 relative`}
+          className={`bg-white h-screen rounded-xl p-1 pt-8 duration-300 w-72 relative`}
         >
           <div className="bg-[#f8fafc] p-5 m-3   rounded-lg text-start">
             <div className="flex justify-between">
-              <div className="text-xl font-semibold">Roles</div>
+              <div className="text-xl font-semibold">🌈 Roles</div>
               <div
                 className={`duration-300 rounded-full cursor-pointer ${
                   !openRoles && "rotate-180"
                 }`}
                 onClick={() => setOpenRoles(!openRoles)}
               >
-                A
+                ☝️
               </div>
             </div>
             <div
               className={`duration-300 ${openRoles ? "visible" : "hidden"}  `}
             >
-              <div className="m-2">Any</div>
-              <hr className="h-px " />
-              <div>Engineering</div>
-              <div>Design</div>
-              <div>Product Management</div>
-              <div>Community Management</div>
+              <ul className="text-sm w-auto mt-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-lg ">
+                <li className=" border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="vue-checkbox"
+                      type="checkbox"
+                      value=""
+                      className=" text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="vue-checkbox"
+                      className=" py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Any
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="react-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="react-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Engineering
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="angular-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="angular-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Design
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="laravel-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="laravel-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Product Management
+                    </label>
+                  </div>
+                </li>
+
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="laravel-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="laravel-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Community Management
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -44,16 +121,78 @@ const Rightbar = () => {
                 }`}
                 onClick={() => setOpenType(!openType)}
               >
-                B
+                ☝️
               </div>
             </div>
             <div
               className={`duration-300 ${openType ? "visible" : "hidden"}  `}
             >
-              <div>Any</div>
-              <div>Full Time</div>
-              <div>Part Time</div>
-              <div>Contract</div>
+              <ul className="text-sm w-auto mt-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-lg ">
+                <li className=" border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="vue-checkbox"
+                      type="checkbox"
+                      value=""
+                      className=" text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="vue-checkbox"
+                      className=" py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Any
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="react-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="react-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Full Time
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="angular-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="angular-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Part Time
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="laravel-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="laravel-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Contract
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -66,7 +205,7 @@ const Rightbar = () => {
                 }`}
                 onClick={() => setOpenLocation(!openLocation)}
               >
-                C
+                ☝️
               </div>
             </div>
             <div
@@ -74,10 +213,72 @@ const Rightbar = () => {
                 openLocation ? "visible" : "hidden"
               }  `}
             >
-              <div>Any</div>
-              <div>Remote-Ok</div>
-              <div>Remote-only</div>
-              <div>Contract</div>
+              <ul className="text-sm w-auto mt-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-lg ">
+                <li className=" border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="vue-checkbox"
+                      type="checkbox"
+                      value=""
+                      className=" text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="vue-checkbox"
+                      className=" py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Any
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="react-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="react-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Remote-OK
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="angular-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="angular-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Remote Only
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                  <div className="flex items-center pl-3">
+                    <input
+                      id="laravel-checkbox"
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                    />
+                    <label
+                      for="laravel-checkbox"
+                      className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                    >
+                      Contract
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

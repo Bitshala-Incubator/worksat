@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import NavBar from "../components/navbar";
+import { SlSocialFacebook, SlSocialInstagram, SlLink } from "react-icons/sl";
 
 const Main = () => {
   return (
     <>
-      <div className="flex flex-col bg-white items-start m-5 p-5">
+      <div className="flex flex-col bg-white rounded-xl items-start py-2 p-2 m-1 md:m-5 md:p-5">
         <div className="text-3xl md:text-5xl font-bold">
           Senior UI UX Designer
         </div>
@@ -19,7 +20,7 @@ const Main = () => {
           <div className="text-2xl font-semibold items-start my-3">
             The Company
           </div>
-          <div className="text-start">
+          <div className="text-start text-sm md:text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
             consequatur voluptatibus quasi, illo dolorum aspernatur, neque
             commodi distinctio, a inventore eveniet iusto consequuntur. Sunt,
@@ -33,7 +34,7 @@ const Main = () => {
           <div className="text-2xl font-semibold items-start mt-6 mb-3">
             The Role
           </div>
-          <div className="text-start">
+          <div className="text-start text-sm md:text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
             consequatur voluptatibus quasi, illo dolorum aspernatur, neque
             commodi distinctio, a inventore eveniet iusto consequuntur. Sunt,
@@ -47,7 +48,7 @@ const Main = () => {
           <div className="text-2xl font-semibold items-start mt-6 mb-3">
             Your Responsibilities
           </div>
-          <div className="text-start">
+          <div className="text-start text-sm md:text-lg">
             <li>
               Knowledge of OAuth and SAML authentication standards preferred
             </li>
@@ -77,9 +78,33 @@ const Main = () => {
           <div className="text-2xl font-semibold items-start mt-6 mb-3">
             How To Apply
           </div>
-          <div className="text-start">
+          <div className="text-start text-sm md:text-lg">
             If you’d like to apply for this job, please email your CV and cover
             letter to jobs@bolt.fun. Thank you!
+          </div>
+        </div>
+        <div className="flex w-full justify-center">
+          <div className="bg-white p-5 px-10 mt-5 border rounded-lg text-start lg:hidden">
+            <div className="flex flex-col justify-between">
+              <div className="text-2xl font-semibold">Bolt.Fun</div>
+              <div>Poisted 3 months ago</div>
+            </div>
+
+            <div className="mt-3">Share this job</div>
+            <div className="flex justify-start my-2">
+              <div className="my-2">
+                <SlSocialFacebook />
+              </div>
+              <div className="mx-2 my-2">
+                <SlSocialInstagram />
+              </div>
+              <div className="mx-2 my-2">
+                <SlLink />
+              </div>
+            </div>
+            <div className="bg-[#8b5cf6] w-1/33 flex justify-center py-1 rounded-lg text-white">
+              Apply
+            </div>
           </div>
         </div>
       </div>
@@ -88,32 +113,32 @@ const Main = () => {
 };
 
 const Right = () => {
-  const [openRoles, setOpenRoles] = useState(true);
-  const [openType, setOpenType] = useState(true);
-  const [openLocation, setOpenLocation] = useState(true);
+  // const [openRoles, setOpenRoles] = useState(true);
+  // const [openType, setOpenType] = useState(true);
+  // const [openLocation, setOpenLocation] = useState(true);
   return (
     <>
-      <div>
-        <div>
-          <div>
-            <div className={` h-screen p-5 pt-8 duration-300 w-80  relative`}>
-              <div className="bg-white p-5 m-3  border rounded-lg text-start">
-                <div className="flex flex-col justify-between">
-                  <div className="text-2xl font-semibold">Bolt.Fun</div>
-                  <div>Poisted 3 months ago</div>
-                </div>
+      <div className={` h-screen p-1 duration-300 w-80  relative`}>
+        <div className="bg-white p-5 m-3  border rounded-lg text-start">
+          <div className="flex flex-col justify-between">
+            <div className="text-2xl font-semibold">Bolt.Fun</div>
+            <div>Poisted 3 months ago</div>
+          </div>
 
-                <div className="mt-3">Share this job</div>
-                <div className="flex justify-start">
-                  <div className="m-2">f</div>
-                  <div className="m-2">i</div>
-                  <div className="m-2">x</div>
-                </div>
-                <div className="bg-[#8b5cf6] flex justify-center py-1 rounded-lg text-white">
-                  Apply
-                </div>
-              </div>
+          <div className="mt-3">Share this job</div>
+          <div className="flex justify-start my-2">
+            <div className="my-2">
+              <SlSocialFacebook />
             </div>
+            <div className="mx-2 my-2">
+              <SlSocialInstagram />
+            </div>
+            <div className="mx-2 my-2">
+              <SlLink />
+            </div>
+          </div>
+          <div className="bg-[#8b5cf6] flex justify-center py-1 rounded-lg text-white">
+            Apply
           </div>
         </div>
       </div>
@@ -124,7 +149,7 @@ const Right = () => {
 const JobDetail = () => {
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       <div className="flex">
         <div className="hidden lg:inline">
           <Sidebar />
