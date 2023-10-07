@@ -37,25 +37,80 @@ const Main = () => {
 
   return (
     <>
+      <div className="flex justify-center mt-5 md:hidden">
+        <form>
+          <label
+            for="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only"
+          >
+            Search
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              required
+              placeholder="Search"
+            />
+          </div>
+        </form>
+      </div>
       <div className="flex flex-col ">
         <div className="border m-5 p-5 bg-white rounded-2xl text-start ">
-          <div className="relative">
+          <div className="relative hidden md:inline">
             <img
               src="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg?cs=srgb&dl=pexels-pixabay-259526.jpg&fm=jpg"
-              className="w-full h-auto rounded-lg"
+              className=" w-full h-auto rounded-lg "
             />
-            <div className="">
+            <div>
               <img
                 src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
                 className="rounded-full absolute h-36 -bottom-16 left-11"
               />
             </div>
           </div>
+
+          <div className="relative inline md:hidden">
+            <div className="relative">
+              <img
+                src="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg?cs=srgb&dl=pexels-pixabay-259526.jpg&fm=jpg"
+                className=" w-full h-auto rounded-lg "
+              />
+              <div>
+                <img
+                  src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                  className="rounded-full absolute h-16 -bottom-7 left-6"
+                />
+              </div>
+            </div>
+          </div>
+
           <div className="mt-20">
             <div className="flex justify-between">
-              <div className="text-3xl font-bold">John Doe</div>
-              <div className="mr-10 bg-green-200 px-5 font-medium py-2 rounded-3xl text-green-600">
+              <div className="text-2xl md:text-3xl font-bold">John Doe</div>
+              <div className="mr-10 hidden md:inline bg-green-200 px-5 font-medium py-2 rounded-3xl text-green-600">
                 Open for work
+              </div>
+              <div className="inline md:hidden text-sm p-1 m-1 bg-green-200 rounded-3xl text-green-600">
+                Open to work
               </div>
             </div>
             <div className="flex gap-3 my-2 ">
@@ -201,49 +256,55 @@ const Right = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-          <div className={` p-3 duration-300  flex justify-center`}>
-            <div className="bg-white m-2 w-80 border rounded-lg text-start">
-              <div className="flex flex-col m-3 text-start justify-center">
-                <div className="text-xl my-3 mx-5 font-semibold">
-                  Similar Makers 🥳
-                </div>
+const Left = () => {
+  return (
+    <>
+      <div className={` p-3 duration-300 hidden xl:inline justify-center`}>
+        <div className="bg-white m-2 w-80 border rounded-lg text-start">
+          <div className="flex flex-col m-3 text-start justify-center">
+            <div className="text-xl my-3 mx-5 font-semibold">
+              Similar Makers 🥳
+            </div>
 
-                <div className="flex items-center ">
-                  <div className="m-2">
-                    <img
-                      src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                      alt="..."
-                      className=" rounded-full shadow h-12 align-middle border-2"
-                    />
-                  </div>
-                  <div className="font-medium text-lg mx-3">John Doe</div>
-                </div>
-                <hr/>
-
-                <div className="flex items-center ">
-                  <div className="m-2">
-                    <img
-                      src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                      alt="..."
-                      className=" rounded-full shadow h-12 align-middle border-2"
-                    />
-                  </div>
-                  <div className="font-medium text-lg mx-3">John Doe</div>
-                </div>
-                <hr/>
-
-                <div className="flex items-center ">
-                  <div className="m-2">
-                    <img
-                      src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                      alt="..."
-                      className=" rounded-full shadow h-12 align-middle border-2"
-                    />
-                  </div>
-                  <div className="font-medium text-lg mx-3">John Doe</div>
-                </div>
+            <div className="flex items-center ">
+              <div className="m-2">
+                <img
+                  src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                  alt="..."
+                  className=" rounded-full shadow h-12 align-middle border-2"
+                />
               </div>
+              <div className="font-medium text-lg mx-3">John Doe</div>
+            </div>
+            <hr />
+
+            <div className="flex items-center ">
+              <div className="m-2">
+                <img
+                  src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                  alt="..."
+                  className=" rounded-full shadow h-12 align-middle border-2"
+                />
+              </div>
+              <div className="font-medium text-lg mx-3">John Doe</div>
+            </div>
+            <hr />
+
+            <div className="flex items-center ">
+              <div className="m-2">
+                <img
+                  src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                  alt="..."
+                  className=" rounded-full shadow h-12 align-middle border-2"
+                />
+              </div>
+              <div className="font-medium text-lg mx-3">John Doe</div>
             </div>
           </div>
         </div>
@@ -262,6 +323,9 @@ const DevProfile = () => {
       <div className="flex ">
         <div className="hidden lg:inline">
           <Sidebar />
+        </div>
+        <div className="hidden lg:inline">
+          <Left />
         </div>
         <div className="w-full ">
           <Main />

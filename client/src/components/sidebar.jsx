@@ -7,7 +7,7 @@ const Sidebar = () => {
     const [open, setOpen] = useState(true)
   return (
     <div>
-         <div className= {`bg-white rounded-xl h-screen p-5 pt-8 duration-300 ${open? 'w-72' : 'w-20'} relative`}>
+         {/* <div className= {`bg-white rounded-xl h-screen p-5 pt-8 duration-300 ${open? 'w-72' : 'w-20'} relative`}>
           <div className={`absolute -right-3 top-9 border border-black rounded-full cursor-pointer ${!open && 'rotate-180'}`} onClick={()=>setOpen(!open)}> <AiOutlineArrowLeft size={25} /> </div>
           <Link to='/'>
           <div className='mx-5 my-4 font-semibold'>⚡️ Home </div>
@@ -24,7 +24,7 @@ const Sidebar = () => {
           <div className='mx-5 my-4 font-semibold'>🗓 Events</div>
           <div className='mx-5 my-4 font-semibold'>🗓 🎙 Podcasts</div>
           <div className='mx-5 my-4 font-semibold'>🎓 Courses</div>
-        </div>
+        </div> */}
     </div>
   )
 }

@@ -84,7 +84,7 @@ const Jobs = () => {
         </form>
       </div>
 
-      <div className="grid grid-cols-3 lg:hidden mt-5 gap-2">
+      <div className="flex flex-col md:grid md:grid-cols-3 lg:hidden mt-5 gap-2">
         <Select
           options={jobList}
           placeholder="Job"
@@ -118,7 +118,7 @@ const Jobs = () => {
             <div>Ui Ux Design</div>
             <div>Bolt.fun</div>
           </div>
-          <div className="hidden md:inline lg:hidden xl:inline m-5 pl-10 justify-center">
+          <div className="hidden md:inline m-5 pl-10 justify-center">
             <button className={`button`}>🏳️‍🌈 Global</button>
             <button className={`button`}>🌈 All Gigs</button>
             <button className={`button`}>💄 Full time</button>

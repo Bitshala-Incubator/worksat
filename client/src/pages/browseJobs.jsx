@@ -18,14 +18,14 @@ const BrowseJobs = () => {
       </div>
 
       <div className="flex ">
-        <div className="hidden lg:inline">
+        {/* <div className="hidden lg:inline">
           <Sidebar />
+        </div> */}
+        <div className="hidden lg:inline">
+          <Rightbar />
         </div>
         <div className="w-full">
           <Jobs />
-        </div>
-        <div className="hidden lg:inline">
-          <Rightbar />
         </div>
 
         <div className="flex-col"></div>
