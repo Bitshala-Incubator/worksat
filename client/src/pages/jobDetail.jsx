@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import NavBar from "../components/navbar";
-import { SlSocialFacebook, SlSocialInstagram, SlLink } from "react-icons/sl";
+import { SlSocialTwitter, SlSocialGithub, SlLink,SlSocialLinkedin } from "react-icons/sl";
 
 const Main = () => {
   return (
@@ -93,13 +93,16 @@ const Main = () => {
             <div className="mt-3">Share this job</div>
             <div className="flex justify-start my-2">
               <div className="my-2">
-                <SlSocialFacebook />
+                <SlSocialTwitter />
               </div>
               <div className="mx-2 my-2">
-                <SlSocialInstagram />
+                <SlSocialGithub />
               </div>
               <div className="mx-2 my-2">
                 <SlLink />
+              </div>
+              <div className="mx-2 my-2">
+                <SlSocialLinkedin />
               </div>
             </div>
             <div className="bg-[#8b5cf6] w-1/33 flex justify-center py-1 rounded-lg text-white">
@@ -113,9 +116,7 @@ const Main = () => {
 };
 
 const Right = () => {
-  // const [openRoles, setOpenRoles] = useState(true);
-  // const [openType, setOpenType] = useState(true);
-  // const [openLocation, setOpenLocation] = useState(true);
+
   return (
     <>
       <div className={` h-screen p-1 duration-300 w-80  relative`}>
@@ -128,13 +129,16 @@ const Right = () => {
           <div className="mt-3">Share this job</div>
           <div className="flex justify-start my-2">
             <div className="my-2">
-              <SlSocialFacebook />
+              <SlSocialTwitter />
             </div>
             <div className="mx-2 my-2">
-              <SlSocialInstagram />
+              <SlSocialGithub />
             </div>
             <div className="mx-2 my-2">
               <SlLink />
+            </div>
+            <div className="mx-2 my-2">
+              <SlSocialLinkedin />
             </div>
           </div>
           <div className="bg-[#8b5cf6] flex justify-center py-1 rounded-lg text-white">
@@ -151,9 +155,9 @@ const JobDetail = () => {
     <>
       <NavBar />
       <div className="flex">
-        <div className="hidden lg:inline">
+        {/* <div className="hidden lg:inline">
           <Sidebar />
-        </div>
+        </div> */}
         <div className="flex w-full">
           <Main />
         </div>

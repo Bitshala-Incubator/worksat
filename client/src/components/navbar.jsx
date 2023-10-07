@@ -69,7 +69,7 @@ const NavBar = () => {
             <div className="m-2 hidden lg:inline">
               <BsBell size={28} className="mt-1" />
             </div>
-            <Link to='editProfile'>
+            <Link to='/editProfile'>
             <div className="m-2">
               <img
                 src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"

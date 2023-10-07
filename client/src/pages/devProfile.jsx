@@ -321,9 +321,9 @@ const DevProfile = () => {
       </div>
 
       <div className="flex ">
-        <div className="hidden lg:inline">
+        {/* <div className="hidden lg:inline">
           <Sidebar />
-        </div>
+        </div> */}
         <div className="hidden lg:inline">
           <Left />
         </div>

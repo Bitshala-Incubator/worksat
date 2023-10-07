@@ -17,6 +17,8 @@ const Jobs = () => {
   const locationList = [
     { value: "Global", label: "🏳️‍🌈 Global" },
     { value: "India", label: "🎨 India" },
+    { value: "indonesia", label: "🎨 indonesia" },
+    { value: "Singapore", label: "🎨 Singapore" },
     { value: "Remote", label: "🌍 Remote" },
   ];
 
@@ -86,6 +88,7 @@ const Jobs = () => {
 
       <div className="flex flex-col md:grid md:grid-cols-3 lg:hidden mt-5 gap-2">
         <Select
+          className="text-start"
           options={jobList}
           placeholder="Job"
           value={selectJob}
@@ -94,6 +97,7 @@ const Jobs = () => {
           isMulti
         />
         <Select
+          className="text-start"
           options={locationList}
           placeholder="Location"
           value={selectLocation}
@@ -102,6 +106,7 @@ const Jobs = () => {
           isMulti
         />
         <Select
+          className="text-start"
           options={rolesList}
           placeholder="Roles"
           value={selectRole}

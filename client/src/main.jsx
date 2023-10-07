@@ -11,6 +11,7 @@ import BrowseJobs from "./pages/browseJobs.jsx";
 import BrowseDevs from "./pages/browseDevs.jsx";
 import NavBar from "./components/navbar.jsx";
 import EditProfile from "./pages/editProfille.jsx";
+import RolesAndSkills from "./pages/rolesAndSkills.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,12 @@ const router = createBrowserRouter([
     path: "/editProfile",
     element: <EditProfile />,
   },
+  {
+    path: "/roleAndSkills",
+    element: <RolesAndSkills />,
+  },
+
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

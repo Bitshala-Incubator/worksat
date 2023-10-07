@@ -243,9 +243,7 @@ const BrowseDevs = () => {
     <>
       <NavBar />
       <div className="flex">
-        {/* <div className="hidden lg:inline">
-          <Sidebar />
-        </div> */}
+      
         <div className="hidden lg:inline">
           <Skills />
         </div>
