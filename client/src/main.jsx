@@ -10,8 +10,9 @@ import JobDetail from "./pages/jobDetail.jsx";
 import BrowseJobs from "./pages/browseJobs.jsx";
 import BrowseDevs from "./pages/browseDevs.jsx";
 import NavBar from "./components/navbar.jsx";
-import EditProfile from "./pages/editProfille.jsx";
 import RolesAndSkills from "./pages/rolesAndSkills.jsx";
+import Ed from "./pages/EditProfile.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,9 +47,13 @@ const router = createBrowserRouter([
     path: "/editProfile",
     element: <EditProfile />,
   },
+  // {
+  //   path: "/roleAndSkills",
+  //   element: <RolesAndSkills />,
+  // },
   {
-    path: "/roleAndSkills",
-    element: <RolesAndSkills />,
+    path: "/ed",
+    element: <Ed />,
   },
 
   

@@ -24,8 +24,6 @@ const optionList = [
   { value: "angular.js", label: "Angular.js" },
 ];
 
-
-
 const Main = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState();
@@ -51,7 +49,7 @@ const Main = () => {
 
   return (
     <>
-      <form className="text-start p-5 border bg-white mx-5 rounded-xl ">
+      <form className="text-start p-5 border bg-white md:mx-5 rounded-xl ">
         <div>
           <div className="my-2 text-xl font-semibold">Company Name</div>
 
@@ -94,7 +92,6 @@ const Main = () => {
             </select>
           </div>
 
-
           <div className="my-2 text-xl font-semibold">Location</div>
           <div className="my-1">
             <select className="p-2.5 text-gray-800 w-full bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
@@ -133,37 +130,37 @@ const Main = () => {
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
           ></textarea>
 
-<div className="my-2 text-xl font-semibold">Website</div>
+          <div className="my-2 text-xl font-semibold">Website</div>
 
-<input
-  type="text"
-  id="default-input"
-  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-/>
+          <input
+            type="text"
+            id="default-input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
 
-<div className="my-2 text-xl font-semibold">Twitter</div>
+          <div className="my-2 text-xl font-semibold">Twitter</div>
 
-<input
-  type="text"
-  id="default-input"
-  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-/>
+          <input
+            type="text"
+            id="default-input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
 
-<div className="my-2 text-xl font-semibold">LinkedIn</div>
+          <div className="my-2 text-xl font-semibold">LinkedIn</div>
 
-<input
-  type="text"
-  id="default-input"
-  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-/>
+          <input
+            type="text"
+            id="default-input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
 
-<div className="my-2 text-xl font-semibold">Github</div>
+          <div className="my-2 text-xl font-semibold">Github</div>
 
-<input
-  type="text"
-  id="default-input"
-  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-/>
+          <input
+            type="text"
+            id="default-input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
         </div>
 
         {/* <div className="my-2 text-xl font-semibold">Benifits</div>

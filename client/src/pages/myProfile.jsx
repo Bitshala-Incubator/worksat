@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import NavBar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Select from "react-select";
+import { Tab, Tabs } from "../components/tabs";
+import BrowseJobs from "./browseJobs";
+import BrowseDevs from "./browseDevs";
+import RolesAndSkills from "./rolesAndSkills";
 
 const optionList = [
   { value: "rust", label: "Rust" },
@@ -49,8 +53,13 @@ const Right = () => {
   );
 };
 
-
-
+const Edit = () => {
+  return (
+    <>
+      
+    </>
+  );
+};
 
 const Main = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -77,24 +86,10 @@ const Main = () => {
 
   return (
     <>
-      <form className="text-start p-5 border bg-white mx-5 rounded-xl ">
+    <form className="text-start p-5 border bg-white md:mx-5 rounded-xl ">
         <div>
           <div className="mb-20">
-          <div className="relative hidden md:inline">
-            <img
-              src="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg?cs=srgb&dl=pexels-pixabay-259526.jpg&fm=jpg"
-              className=" w-full h-auto rounded-lg "
-            />
-            <div>
-              <img
-                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                className="rounded-full absolute h-36 -bottom-16 left-11"
-              />
-            </div>
-          </div>
-
-          <div className="relative inline md:hidden">
-            <div className="relative">
+            <div className="relative hidden md:inline">
               <img
                 src="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg?cs=srgb&dl=pexels-pixabay-259526.jpg&fm=jpg"
                 className=" w-full h-auto rounded-lg "
@@ -102,11 +97,25 @@ const Main = () => {
               <div>
                 <img
                   src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                  className="rounded-full absolute h-16 -bottom-7 left-6"
+                  className="rounded-full absolute h-36 -bottom-16 left-11"
                 />
               </div>
             </div>
-          </div>
+
+            <div className="relative inline md:hidden">
+              <div className="relative">
+                <img
+                  src="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg?cs=srgb&dl=pexels-pixabay-259526.jpg&fm=jpg"
+                  className=" w-full h-auto rounded-lg "
+                />
+                <div>
+                  <img
+                    src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                    className="rounded-full absolute h-16 -bottom-7 left-6"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="my-2 text-xl font-semibold">Username</div>
@@ -217,7 +226,7 @@ const Main = () => {
       </form>
 
       <div className="flex justify-center ">
-        <div className={` w-full m-5 rounded-xl max-w-lg lg:hidden mt-5`}>
+        <div className={` w-full md:m-5 rounded-xl max-w-lg lg:hidden mt-5`}>
           <div className="bg-white border p-5 rounded-lg text-start">
             <div className="flex flex-col text-start justify-center">
               <div>
@@ -253,12 +262,12 @@ const Main = () => {
   );
 };
 
-const EditProfile = () => {
+const MyProfile = () => {
   return (
     <>
-      <div className="mb-3 lg:mb-0">
+      {/* <div className="mb-3 lg:mb-0">
         <NavBar />
-      </div>
+      </div> */}
 
       <div className="flex ">
         <div className="hidden lg:inline">
@@ -275,4 +284,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default MyProfile;

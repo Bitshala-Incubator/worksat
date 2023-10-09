@@ -116,7 +116,7 @@ const Jobs = () => {
         />
       </div>
 
-      <div className="my-9 m-1 md:m-10 border bg-white rounded-lg py-5 flex justify-between  items-center">
+      <div className="my-9 m-1 md:m-10 border bg-white rounded-lg  flex justify-between  items-center">
         <div className="flex rounded-lg  items-center">
           <div className="p-3 m-1 md:mx-5 border ">Icon</div>
           <div className="flex-col p-3">

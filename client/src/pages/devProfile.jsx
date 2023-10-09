@@ -74,7 +74,7 @@ const Main = () => {
         </form>
       </div>
       <div className="flex flex-col ">
-        <div className="border m-5 p-5 bg-white rounded-2xl text-start ">
+        <div className="border my-2 md:m-5 p-5 bg-white rounded-2xl text-start ">
           <div className="relative hidden md:inline">
             <img
               src="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg?cs=srgb&dl=pexels-pixabay-259526.jpg&fm=jpg"
@@ -137,7 +137,7 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <div className="border m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
+        <div className="border my-2 md:m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
           <div className="text-2xl font-semibold mb-3 p-2">🎛️ Roles</div>
           <div className="flex items-center">
             <div className="bg-gray-300 p-2 rounded-lg mx-2">💻</div>
@@ -154,7 +154,7 @@ const Main = () => {
             <div className="font-medium mx-2">Community Manager</div>
           </div>
         </div>
-        <div className="border m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
+        <div className="border my-2 md:m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
           <div className="text-2xl font-semibold mb-3 p-2">🌈 Skills</div>
 
           <div className=" rounded-lg">
@@ -169,8 +169,8 @@ const Main = () => {
         </div>
         <div>
           <div>
-            <div className="flex justify-center lg:hidden">
-              <div className="bg-white p-8 m-3  border rounded-2xl text-start">
+            <div className="flex justify-center  lg:hidden">
+              <div className="bg-white p-8 md:m-3 max-w-lg border rounded-2xl text-start">
                 <div className="flex flex-col text-center justify-center">
                   <div className="text-xl my-3 font-semibold">
                     Unlock More Details ⚡
@@ -188,14 +188,14 @@ const Main = () => {
                     Or click to login with your browser’s wallet.
                   </div>
 
-                  <div className="flex flex-col justify-between my-2 gap- ">
-                    <div className="bg-[#8b5cf6] justify-center items-center flex  px-3 py-2 rounded-lg text-white">
+                  <div className="flex flex-col justify-between ">
+                    <div className="bg-[#8b5cf6] justify-center items-center mb-2 flex  px-3 py-2 rounded-lg text-white">
                       <div>Scan to pay</div>
                       <div className="ml-2">
                         <FiMousePointer className="rotate-90" />
                       </div>
                     </div>
-                    <div className="flex  bg-[#f5f3ff] px-8 py-2 justify-center rounded-lg items-center text-[#7c3aed]">
+                    <div className="flex  bg-[#f5f3ff] px-8 py-2 justify-center mb-2 rounded-lg items-center text-[#7c3aed]">
                       <div className="px-2">Copy</div>
                       <LuCopy className="" />
                     </div>

@@ -14,7 +14,7 @@ const optionList = [
 const Right = () => {
   return (
     <>
-      <div className={` h-screen  duration-300 w-80  relative`}>
+      <div className={` h-screen  duration-300 w-full   relative`}>
         <div className="bg-white p-5  border rounded-lg text-start">
           <div className="flex flex-col text-start justify-center">
             <div>
@@ -83,7 +83,7 @@ const Main = () => {
     <>
       <form>
         <div>
-          <div className="border m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
+          <div className="border md:m-5 text-start p-5 md:py-10 rounded-2xl bg-white flex flex-col">
             <div className="text-2xl font-semibold mb-3 p-2">🎛️ Roles</div>
             <div className="text-xl my-2 p-2 mx-3">
               Select job roles you are looking for
@@ -105,7 +105,7 @@ const Main = () => {
         </div>
 
         <div>
-          <div className="border m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
+          <div className="border my-2 md:m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
             <div className="text-2xl font-semibold mb-3 p-2">🌈 Skills</div>
             <div className="text-xl my-2 p-2 mx-3">
               Add some of your skills and let other makers know what you are
@@ -128,7 +128,7 @@ const Main = () => {
       </form>
 
       <div className="flex justify-center ">
-        <div className={` w-full m-5 rounded-xl max-w-lg lg:hidden mt-5`}>
+        <div className={` w-full md:m-5 rounded-xl max-w-lg lg:hidden mt-5`}>
           <div className="bg-white border p-5 rounded-lg text-start">
             <div className="flex flex-col text-start justify-center">
               <div>
@@ -168,9 +168,9 @@ const Main = () => {
 const RolesAndSkills = () => {
   return (
     <div>
-      <div className="mb-3 lg:mb-0">
+      {/* <div className="mb-3 lg:mb-0">
         <NavBar />
-      </div>
+      </div> */}
 
       <div className="flex ">
         <div className="hidden lg:inline">
