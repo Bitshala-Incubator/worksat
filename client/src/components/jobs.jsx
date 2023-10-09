@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { db } from "../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-const Jobs = () => {
+const Filters = () => {
   const jobList = [
     { value: "all roles", label: "🌈 All Roles" },
     { value: "frontend dev", label: "💄 Frontend Developer" },
@@ -48,7 +50,7 @@ const Jobs = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="flex justify-center mt-5 md:hidden">
         <form>
           <label
@@ -115,24 +117,89 @@ const Jobs = () => {
           isMulti
         />
       </div>
+    </>
+  );
+};
 
-      <div className="my-9 m-1 md:m-10 border bg-white rounded-lg  flex justify-between  items-center">
-        <div className="flex rounded-lg  items-center">
-          <div className="p-3 m-1 md:mx-5 border ">Icon</div>
-          <div className="flex-col p-3">
-            <div>Ui Ux Design</div>
-            <div>Bolt.fun</div>
-          </div>
-          <div className="hidden md:inline m-5 pl-10 justify-center">
-            <button className={`button`}>🏳️‍🌈 Global</button>
-            <button className={`button`}>🌈 All Gigs</button>
-            <button className={`button`}>💄 Full time</button>
+const Jobs = () => {
+  const [jobsList, setJobsList] = useState([]);
+  const jobsCollectionRef = collection(db, "jobs");
+  const [id, setId] = useState("");
+  const navigate = useNavigate();
+
+  const viewDetails = (id) => {
+    navigate("/jobDetail", {
+      state: {
+        id: id,
+      },
+    });
+  };
+
+  useEffect(() => {
+    const getJobsList = async () => {
+      try {
+        const data = await getDocs(jobsCollectionRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setJobsList(filteredData);
+        console.log(filteredData, "fdata");
+        console.log("id", filteredData[0].id);
+        setId(filteredData[0].id);
+        console.log(id);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getJobsList();
+  }, []);
+
+  return (
+    <div>
+      <Filters />
+      {jobsList.map((job) => (
+        <div>
+          <div className="my-5 m-1 md:mx-10 border bg-white rounded-lg  flex justify-between  items-center">
+            <div className="flex rounded-lg  items-center">
+              <div className=" ">
+                <div>
+                  <img
+                    className="md:mx-5 m-2 border rounded-full h-20 w-20"
+                    src={job.imgUrl?(job.imgUrl):('https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg')}
+                    alt="Image"
+                  />
+                </div>
+              </div>
+              <div className="flex-col p-3">
+                <div>{job.position}</div>
+                <div>{job.companyName}</div>
+              </div>
+              <div className="hidden md:inline m-5 pl-10 justify-center">
+                <button className={`button`}>🌈 {job.employmentType}</button>
+                <button className={`button`}> {job.location}</button>
+                <button className={`button`}>💄 {job.role}</button>
+              </div>
+            </div>
+
+            {/* <Link
+              to={{
+                pathname: "/jobDetail",
+                state: { id: id },
+              }}
+            > */}
+            <button
+              onClick={() => {
+                viewDetails(job.id);
+              }}
+            >
+              <div className="p-3 m-3 rounded-lg bg-gray-200">Apply</div>
+            </button>
+            {/* </Link> */}
           </div>
         </div>
-        <Link to="/jobDetail">
-          <div className="p-3 m-3 rounded-lg bg-gray-200">Apply</div>
-        </Link>
-      </div>
+      ))}
     </div>
   );
 };

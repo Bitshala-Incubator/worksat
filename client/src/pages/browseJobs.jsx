@@ -10,7 +10,7 @@ import Jobs from "../components/jobs";
 
 const BrowseJobs = () => {
   const [search, setSearch] = useState("");
-  console.log(search);
+  // console.log(search);
   return (
     <>
       <div>

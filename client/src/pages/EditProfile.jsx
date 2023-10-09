@@ -26,17 +26,7 @@ const EditProfile = () => {
       </Tabs>
 
 
-      {/* <div className="flex ">
-        <div className="hidden lg:inline">
-          <Sidebar />
-        </div>
-        <div className="w-full">
-          <Main />
-        </div>
-        <div className="hidden lg:inline">
-          <Right />
-        </div>
-      </div> */}
+     
     </>
     </div>
     

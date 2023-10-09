@@ -55,8 +55,6 @@ const router = createBrowserRouter([
     path: "/ed",
     element: <Ed />,
   },
-
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
