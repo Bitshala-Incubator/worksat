@@ -186,7 +186,7 @@ const Jobs = () => {
             {/* <Link
               to={{
                 pathname: "/jobDetail",
-                state: { id: id },
+                state: { id: id },f
               }}
             > */}
             <button

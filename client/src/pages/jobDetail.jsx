@@ -75,8 +75,7 @@ const Main = (data) => {
                   How To Apply
                 </div>
                 <div className="text-start text-sm md:text-lg">
-                  If you’d like to apply for this job, please email your CV and
-                  cover letter to jobs@bolt.fun. Thank you!
+                If you’d like to apply for this job, simply click the apply button and your profile will be shared with the recruiter. Thank you!I
                 </div>
               </div>
             </div>
