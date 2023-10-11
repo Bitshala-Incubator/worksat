@@ -80,7 +80,7 @@ const Main = () => {
                 </div>
 
                 <div className="flex justify-center rounded-xl ">
-                  <Select
+                  {/* <Select
                     className="w-full "
                     options={optionList}
                     placeholder="Select Stack"
@@ -88,7 +88,7 @@ const Main = () => {
                     onChange={handleSelect}
                     isSearchable={true}
                     isMulti
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

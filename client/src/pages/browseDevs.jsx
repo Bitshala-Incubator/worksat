@@ -139,7 +139,7 @@ const Main = () => {
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                   required
-                  placeholder="Search For Jobs"
+                  placeholder="Search For Devs"
                 />
               </div>
             </form>
@@ -148,7 +148,7 @@ const Main = () => {
           <Select
             className="mt-3 lg:hidden"
             options={rolesList}
-            placeholder="Roles"
+            placeholder="Skills"
             value={selectRole}
             onChange={handleRole}
             isSearchable={true}
@@ -192,18 +192,18 @@ const Main = () => {
                       <div className="text-xl font-semibold my-3 ml-5">
                         Skills
                       </div>
-                      {/* <div>
-                    {dev.skills?(
-                      <>
-                      dev.skills.map((category, idx) => (
-                        <button className={`button `} key={`filters-${idx}`}>
-                          {category}
-                        </button>
-                      ))}
-                      </>
-                      
-                      )
-                  </div> */}
+
+                      <div>
+                        {dev.skills &&
+                          dev.skills.map((skills, idx) => (
+                            <button
+                              className={`button `}
+                              key={`filters-${idx}`}
+                            >
+                              {skills.label}
+                            </button>
+                          ))}
+                      </div>
                     </div>
                   </>
                 ))}

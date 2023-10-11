@@ -36,7 +36,7 @@ const Main = (data) => {
     "User Testing",
   ];
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const id = data.data
+  const id = data.data;
   const [devDetail, setDevDetail] = useState([]);
 
   const ref = doc(db, "devs", id);
@@ -46,7 +46,7 @@ const Main = (data) => {
       try {
         const data = await getDoc(ref);
         const filteredData = data.data();
-        console.log(filteredData);
+        console.log(filteredData, "fdata");
         setDevDetail(filteredData);
       } catch (err) {
         console.error(err);
@@ -56,7 +56,7 @@ const Main = (data) => {
     getJobDetail();
   }, []);
 
-  console.log(id)
+  // console.log(devDetail.skills, "devD")
 
   return (
     <>
@@ -148,12 +148,20 @@ const Main = (data) => {
             <div className="border my-2 md:m-5 p-5 bg-white rounded-2xl text-start ">
               <div className="relative hidden md:inline">
                 <img
-                  src={devDetail.profImgUrl?(devDetail.profImgUrl):('https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg')}
+                  src={
+                    devDetail.profImgUrl
+                      ? devDetail.profImgUrl
+                      : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                  }
                   className=" w-full h-56 rounded-lg "
                 />
                 <div>
                   <img
-                    src={devDetail.profImgUrl?(devDetail.profImgUrl):('https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg')}
+                    src={
+                      devDetail.profImgUrl
+                        ? devDetail.profImgUrl
+                        : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                    }
                     className="rounded-full absolute h-36 -bottom-16 left-11"
                   />
                 </div>
@@ -162,12 +170,20 @@ const Main = (data) => {
               <div className="relative inline md:hidden">
                 <div className="relative">
                   <img
-                    src={devDetail.coverImgUrl?(devDetail.coverImgUrl):('https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg')}
+                    src={
+                      devDetail.coverImgUrl
+                        ? devDetail.coverImgUrl
+                        : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                    }
                     className=" w-full h-56 rounded-lg "
                   />
                   <div>
                     <img
-                      src={devDetail.profImgUrl?(devDetail.profImgUrl):('https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg')}
+                      src={
+                        devDetail.profImgUrl
+                          ? devDetail.profImgUrl
+                          : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                      }
                       className="rounded-full absolute h-16 -bottom-7 left-6"
                     />
                   </div>
@@ -176,7 +192,9 @@ const Main = (data) => {
 
               <div className="mt-20">
                 <div className="flex justify-between">
-                  <div className="text-2xl md:text-3xl font-bold">{devDetail.userName}</div>
+                  <div className="text-2xl md:text-3xl font-bold">
+                    {devDetail.userName}
+                  </div>
                   <div className="mr-10 hidden md:inline bg-green-200 px-5 font-medium py-2 rounded-3xl text-green-600">
                     Open for work
                   </div>
@@ -198,10 +216,10 @@ const Main = (data) => {
                     <FaDiscord />
                   </div>
                 </div>
-                <div className="my-2 text-xl font-semibold">🌍 {devDetail.location}</div>
-                <div className="pr-5 my-2">
-                  {devDetail.bio}
+                <div className="my-2 text-xl font-semibold">
+                  🌍 {devDetail.location}
                 </div>
+                <div className="pr-5 my-2">{devDetail.bio}</div>
               </div>
             </div>
             <div className="border my-2 md:m-5 text-start p-5 py-10 rounded-2xl bg-white flex flex-col">
@@ -226,10 +244,12 @@ const Main = (data) => {
 
               <div className=" rounded-lg">
                 <div>
-                  {filters.map((category, idx) => (
-                    <button className="button" key={`filters-${idx}`}>
-                      {category}
-                    </button>
+                  {devDetail.skills && devDetail.skills.map((skill, idx) => (
+                    <>
+                      <button className="button" key={`filters-${idx}`}>
+                        {skill.label}
+                      </button>
+                    </>
                   ))}
                 </div>
               </div>
@@ -323,8 +343,6 @@ const Main = (data) => {
   );
 };
 
-
-
 const DevProfile = (props) => {
   const location = useLocation();
   const data = location.state.id;
@@ -334,9 +352,7 @@ const DevProfile = (props) => {
       <div>
         <NavBar />
       </div>
-      <Main data={data}/>
-
-     
+      <Main data={data} />
     </>
   );
 };

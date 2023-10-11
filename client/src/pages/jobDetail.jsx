@@ -8,7 +8,6 @@ import {
   SlLink,
   SlSocialLinkedin,
 } from "react-icons/sl";
-import Jobs from "../components/jobs";
 import { useLocation } from "react-router-dom";
 import { db } from "../config/firebase";
 import { collection, getDoc, doc, getDocs } from "firebase/firestore";

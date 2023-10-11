@@ -433,9 +433,7 @@ const Main = () => {
           </form>
 
           <div className="flex justify-center ">
-            <div
-              className={` w-96 md:m-5 rounded-xl max-w-lg lg:hidden mt-5`}
-            >
+            <div className={` w-96 md:m-5 rounded-xl max-w-lg lg:hidden mt-5`}>
               <div className="bg-white border p-5 rounded-lg text-start">
                 <div className="flex flex-col text-start justify-center">
                   <div className=" flex justify-center">
@@ -446,7 +444,7 @@ const Main = () => {
                   <div className="text-lg font-medium my-2">{location}</div>
                   <div>
                     <button className={`button`}>🏳️‍🌈 {location}</button>
-                    <button className={`button`}>🌈 {skills}</button>
+                    {/* <button className={`button`}>🌈 {skills.label}</button> */}
                     <button className={`button`}>💄 {availability}</button>
                   </div>
 

@@ -85,8 +85,37 @@ const Main = () => {
     setSkills(data);
   }
 
-  const handlePost = async () => {
-    setDisabled(true);
+  // const handlePost = async () => {
+  //   setDisabled(true);
+  //   if (handleSubmit) {
+  //     try {
+  //       await addDoc(jobsCollectionRef, {
+  //         companyName: companyName,
+  //         companyDetails: companyDetails,
+  //         position: position,
+  //         employmentType: employmentType,
+  //         role: role,
+  //         location: location,
+  //         // skills: skills,
+  //         imgUrl: imgUrl,
+  //         jobDescription: jobDescription,
+  //         responsibilities: responsibilities,
+  //         website: website,
+  //         twitter: twitter,
+  //         linkedin: linkedin,
+  //         github: github,
+  //       });
+  //       console.log("done");
+  //       alert("Job Posted Successfully");
+  //       window.location.reload();
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       await addDoc(jobsCollectionRef, {
         companyName: companyName,
@@ -95,7 +124,7 @@ const Main = () => {
         employmentType: employmentType,
         role: role,
         location: location,
-        // skills: skills,
+        skills: skills,
         imgUrl: imgUrl,
         jobDescription: jobDescription,
         responsibilities: responsibilities,
@@ -112,13 +141,9 @@ const Main = () => {
     }
   };
 
-  const handleSubmit = () => {
-    handlePost();
-  };
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e)=>{handleSubmit(e)}}>
         <div className="flex">
           <div className="w-full">
             <div className="text-start p-5 border bg-white md:mx-5 rounded-xl ">
@@ -356,7 +381,6 @@ const Main = () => {
                   <button
                     disabled={disabled}
                     className="border-2 text-center bg-[#8b5cf6] text-white px-4 py-2 mt-1 rounded-lg disabled:bg-[#dbd5e7]"
-                    // onClick={handlePost}
                     id="submit"
                     value="Submit"
                   >
