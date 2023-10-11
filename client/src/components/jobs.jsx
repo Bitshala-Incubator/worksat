@@ -82,7 +82,7 @@ const Filters = () => {
               id="default-search"
               className="block w-fit p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
               required
-              placeholder="Search"
+              placeholder="Search For Jobs"
             />
           </div>
         </form>
@@ -160,14 +160,22 @@ const Jobs = () => {
     <div>
       <Filters />
       {jobsList.map((job) => (
-        <div>
+        <div
+          onClick={() => {
+            viewDetails(job.id);
+          }}
+        >
           <div className="my-5 m-1 md:mx-10 border bg-white rounded-lg  flex justify-between  items-center">
             <div className="flex rounded-lg  items-center">
               <div className=" ">
                 <div>
                   <img
                     className="md:mx-5 m-2 border rounded-full h-20 w-20"
-                    src={job.imgUrl?(job.imgUrl):('https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg')}
+                    src={
+                      job.imgUrl
+                        ? job.imgUrl
+                        : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                    }
                     alt="Image"
                   />
                 </div>
@@ -183,20 +191,9 @@ const Jobs = () => {
               </div>
             </div>
 
-            {/* <Link
-              to={{
-                pathname: "/jobDetail",
-                state: { id: id },f
-              }}
-            > */}
-            <button
-              onClick={() => {
-                viewDetails(job.id);
-              }}
-            >
+            <button>
               <div className="p-3 m-3 rounded-lg bg-gray-200">Apply</div>
             </button>
-            {/* </Link> */}
           </div>
         </div>
       ))}

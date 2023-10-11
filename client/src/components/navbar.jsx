@@ -50,12 +50,13 @@ const NavBar = () => {
                   id="default-search"
                   className="block w-96 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                   required
-                  placeholder="Search"
+                  placeholder="Search For Jobs"
                 />
               </div>
             </form>
           </div>
           <div className="flex justify-end ">
+            
             <Link to="/postJob">
               <div className="m-2 bg-[#ede9fe]  text-[#8b5cf6] border px-3 py-2 rounded-lg">
                 Create
@@ -66,9 +67,7 @@ const NavBar = () => {
                 Makers
               </div>
             </Link>
-            <div className="m-2 hidden lg:inline">
-              <BsBell size={28} className="mt-1" />
-            </div>
+
             <Link to='/editProfile'>
             <div className="m-2">
               <img

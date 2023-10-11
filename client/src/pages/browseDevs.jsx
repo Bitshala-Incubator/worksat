@@ -139,7 +139,7 @@ const Main = () => {
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                   required
-                  placeholder="Search"
+                  placeholder="Search For Jobs"
                 />
               </div>
             </form>

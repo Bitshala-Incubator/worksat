@@ -113,7 +113,7 @@ const Main = (data) => {
             </div>
           </div>
         ) : (
-          <div></div>
+          <div>Job Loading</div>
         )}
       </div>
       <div className="hidden lg:inline">
@@ -130,17 +130,17 @@ const Main = (data) => {
             </div>
 
             <div className="mt-3">Share this job</div>
-            <div className="flex justify-start my-2">
-              <div className="my-2">
+            <div className="flex py-2 my-2">
+              <div className="mx-1">
                 <SlSocialTwitter />
               </div>
-              <div className="mx-2 my-2">
+              <div className="mx-1">
                 <SlSocialGithub />
               </div>
-              <div className="mx-2 my-2">
+              <div className="mx-1">
                 <SlLink />
               </div>
-              <div className="mx-2 my-2">
+              <div className="mx-1">
                 <a href={jobDetail.linkedin} target="_blank">
                   <SlSocialLinkedin />
                 </a>
