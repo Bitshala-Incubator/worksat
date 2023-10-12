@@ -36,6 +36,7 @@ const Main = () => {
   const [profImgUrl, setProfImgUrl] = useState("");
   const [coverImgUrl, setCoverImgUrl] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
   let subtitle;
 
@@ -54,14 +55,13 @@ const Main = () => {
   // const [selectedOptions, setSelectedOptions] = useState();
 
   const handleFilterButtonClick = (selectedCategory) => {
-    if (role.includes(selectedCategory)) {
-      let filters = role.filter((el) => el !== selectedCategory);
-      setRole(filters);
+    if (selectedFilters.includes(selectedCategory)) {
+      let filters = selectedFilters.filter((el) => el !== selectedCategory);
+      setSelectedFilters(filters);
     } else {
-      setRole([...role, selectedCategory]);
+      setSelectedFilters([...selectedFilters, selectedCategory]);
     }
   };
-
   function handleSelect(data) {
     setSkills(data);
   }
@@ -171,11 +171,8 @@ const Main = () => {
                       src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
                       className="rounded-full absolute h-36 -bottom-16 left-11"
                     /> */}
-                    <div className="rounded-full absolute h-36 -bottom-16 left-11">
-                      <label
-                        for="dropzone-file"
-                        className="flex flex-col  rounded-full border-2 p-5 border-gray-300 border-dashed cursor-pointer bg-gray-300"
-                      >
+                    <div className="rounded-full w-36 absolute h-50 -bottom-16 left-11">
+                      <label className="flex flex-col  rounded-full border-2 p-5 border-gray-300 border-dashed cursor-pointer bg-gray-300">
                         <div className="flex py-3 flex-col items-center justify-center rounded-lg">
                           <svg
                             className="w-8 h-8 mb-4 text-gray-500"
@@ -203,7 +200,7 @@ const Main = () => {
                         </div>
                         <input
                           type="file"
-                          // className="hidden"
+                          className="hidden"
                           onChange={(e) => {
                             handleProfUpload(e);
                           }}
@@ -219,7 +216,7 @@ const Main = () => {
                       className=" w-full h-auto rounded-lg "
                     /> */}
                     <div className="flex -z-10 flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
-                      <label for="dropzone-file" className="bg-red-600">
+                      <label for="dropzone-file">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <svg
                             className="w-8 h-8 mb-4 text-gray-500"
@@ -261,10 +258,7 @@ const Main = () => {
                         className="rounded-full absolute h-16 -bottom-7 left-6"
                       /> */}
                       <div className="rounded-full absolute h-16 -bottom-7 left-6">
-                        <label
-                          for="dropzone-file"
-                          className="flex flex-col  rounded-full border border-gray-300 border-dashed cursor-pointer bg-gray-300"
-                        >
+                        <label className="flex flex-col  rounded-full border border-gray-300 border-dashed cursor-pointer bg-gray-300">
                           <div className="flex flex-col items-center justify-center rounded-lg">
                             <svg
                               className="w-8 h-8 mb-1 mt-1 text-gray-500"
@@ -364,6 +358,19 @@ const Main = () => {
                     </button>
                   ))}
                 </div>
+                <div>
+                  {/* {filters.map((category, idx) => (
+                <button
+                  onClick={() => handleFilterButtonClick(category)}
+                  className={`button ${
+                    selectedFilters?.includes(category) ? "active" : ""
+                  }`}
+                  key={`filters-${idx}`}
+                >
+                  {category}
+                </button>
+              ))} */}
+                </div>
               </div>
 
               <div className="my-2 text-xl font-semibold">Location</div>
@@ -443,9 +450,9 @@ const Main = () => {
                   <div className="text-2xl font-semibold">{userName}</div>
                   <div className="text-lg font-medium my-2">{location}</div>
                   <div>
-                    <button className={`button`}>🏳️‍🌈 {location}</button>
+                    <button className={`button`}>{location}</button>
                     {/* <button className={`button`}>🌈 {skills.label}</button> */}
-                    <button className={`button`}>💄 {availability}</button>
+                    <button className={`button`}>{availability}</button>
                   </div>
 
                   <div className="border  my-2 text-md p-1 bg-[#f8fafc] font-thin rounded-lg">
@@ -476,9 +483,9 @@ const Main = () => {
                 <div className="text-2xl font-semibold"> {userName}</div>
                 <div className="text-lg font-medium my-2">{location}</div>
                 <div>
-                  <button className={`button`}>🏳️‍🌈 {location}</button>
+                  <button className={`button`}> {location}</button>
                   {/* <button className={`button`}>🌈 {}</button> */}
-                  <button className={`button`}>💄 {availability}</button>
+                  <button className={`button`}> {availability}</button>
                 </div>
 
                 <div className="border  my-2 text-md p-1 bg-[#f8fafc] font-thin rounded-lg">

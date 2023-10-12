@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../pages/login";
 import { BsBell } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import Sidebar from "./sidebar";
+import Axios from "axios";
 
 const NavBar = () => {
+  const [userId, setUserId] = useState("");
+
+  const navigateLogin = () => {
+    window.location.replace("http://localhost:3001/login");
+  };
+  const navigateLogout = () => {
+    Axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:3001/logout",
+    }).then((res) => {
+      console.log(res);
+      window.location.reload()
+    });
+  };
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:3001/user",
+    }).then((res) => {
+      console.log(res.data.id, "Usdata");
+      setUserId(res.data.id);
+    });
+  }, []);
+
+  console.log(userId, "userId");
+
   return (
     <>
       <div className="hidden md:inline">
@@ -56,27 +86,47 @@ const NavBar = () => {
             </form>
           </div>
           <div className="flex justify-end ">
-            
-            <Link to="/postJob">
-              <div className="m-2 bg-[#ede9fe]  text-[#8b5cf6] border px-3 py-2 rounded-lg">
-                Create
-              </div>
-            </Link>
-            <Link to="/browseDevs">
-              <div className="m-2 bg-white text-black border px-3 py-2 rounded-lg">
-                Makers
-              </div>
-            </Link>
+            {userId ? (
+              <>
+                <Link to="/postJob">
+                  <div className="m-2 bg-[#ede9fe]  text-[#8b5cf6] border px-3 py-2 rounded-lg">
+                    Create
+                  </div>
+                </Link>
+                <Link to="/browseDevs">
+                  <div className="m-2 bg-white text-black border px-3 py-2 rounded-lg">
+                    Makers
+                  </div>
+                </Link>
 
-            <Link to='/editProfile'>
-            <div className="m-2">
-              <img
-                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                alt="..."
-                className=" rounded-full shadow h-10 align-middle border-2"
-              />
-            </div>
-            </Link>
+                <Link to="/editProfile">
+                  <div className="m-2">
+                    <img
+                      src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                      alt="..."
+                      className=" rounded-full shadow h-10 align-middle border-2"
+                    />
+                  </div>
+                </Link>
+                <button onClick={navigateLogout} className="m-2 bg-white text-black border px-3 py-2 rounded-lg">
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/browseDevs">
+                  <div className="m-2 bg-white text-black border px-3 py-2 rounded-lg">
+                    Makers
+                  </div>
+                </Link>
+                <button
+                  onClick={navigateLogin}
+                  className="m-2 bg-white text-black border px-3 py-2 rounded-lg"
+                >
+                  Login
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -106,14 +156,15 @@ const NavBar = () => {
             {/* <div className=" bg-white text-sm text-black border p-1 rounded-lg">
               ⚡ Sign in
             </div> */}
-            <Link to='/editProfile'>
-            <div className="">
-              <img
-                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
-                alt to="..."
-                className=" rounded-full shadow h-8 align-middle border-2"
-              />
-            </div>
+            <Link to="/editProfile">
+              <div className="">
+                <img
+                  src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
+                  alt
+                  to="..."
+                  className=" rounded-full shadow h-8 align-middle border-2"
+                />
+              </div>
             </Link>
           </div>
         </div>

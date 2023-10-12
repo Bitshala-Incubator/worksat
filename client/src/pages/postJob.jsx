@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import NavBar from "../components/navbar";
 import Select from "react-select";
@@ -9,6 +9,7 @@ import { db, img } from "../config/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { addDoc, collection } from "firebase/firestore";
+import Axios from "axios";
 
 const customStyles = {
   content: {
@@ -51,8 +52,31 @@ const Main = () => {
   const [github, setGithub] = useState("");
 
   const [disabled, setDisabled] = useState(false);
+  const [userId, setUserId] = useState("");
 
   let subtitle;
+  const navigate = useNavigate();
+
+  const forceNavigate = () => {
+    alert('Log in first')
+    navigate("/", {});
+  };
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:3001/user",
+    }).then((res) => {
+      console.log(res.data.id, "Usdata");
+      setUserId(res.data.id);
+      if (res.data.id === undefined || res.data.id === "") {
+       
+        forceNavigate()
+      }
+    });
+
+  }, [userId]);
 
   const handleUpload = (e) => {
     console.log(e.target.files[0]);
@@ -116,34 +140,69 @@ const Main = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await addDoc(jobsCollectionRef, {
-        companyName: companyName,
-        companyDetails: companyDetails,
-        position: position,
-        employmentType: employmentType,
-        role: role,
-        location: location,
-        skills: skills,
-        imgUrl: imgUrl,
-        jobDescription: jobDescription,
-        responsibilities: responsibilities,
-        website: website,
-        twitter: twitter,
-        linkedin: linkedin,
-        github: github,
-      });
-      console.log("done");
-      alert("Job Posted Successfully");
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
+    setDisabled(true);
+    console.log("done");
+    if (typeof window.webln !== "undefined") {
+      try {
+        await window.webln.enable();
+      } catch (err) {
+        console.log(err);
+        alert("You need to approve the wallet");
+        window.location.reload();
+      }
+      try {
+        const result = await webln.keysend({
+          destination:
+            "03006fcf3312dae8d068ea297f58e2bd00ec1ffe214b793eda46966b6294a53ce6",
+          amount: "100",
+          customRecords: {
+            34349334: "Post Job",
+          },
+        });
+        console.log(result);
+        alert("paid successfully");
+        try {
+          await addDoc(jobsCollectionRef, {
+            companyName: companyName,
+            companyDetails: companyDetails,
+            position: position,
+            employmentType: employmentType,
+            role: role,
+            location: location,
+            skills: skills,
+            imgUrl: imgUrl,
+            jobDescription: jobDescription,
+            responsibilities: responsibilities,
+            website: website,
+            twitter: twitter,
+            linkedin: linkedin,
+            github: github,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+        alert("Job Posted Successfully");
+        window.location.reload();
+      } catch (err) {
+        console.log(err),
+          alert("You Need to pay the sats in order to post the job");
+        setDisabled(false);
+      }
     }
+
+    // window.location.reload();
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   return (
     <>
-      <form onSubmit={(e)=>{handleSubmit(e)}}>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <div className="flex">
           <div className="w-full">
             <div className="text-start p-5 border bg-white md:mx-5 rounded-xl ">

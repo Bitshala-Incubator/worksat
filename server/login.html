@@ -78,19 +78,25 @@
 	<meta http-equiv="refresh" content="{{refreshSeconds}}">
 </head>
 <body>
+	<div id="myModal" class="modal">
 
-	<div id="content">
-		<div class="wrap">
-			<h1>UpSats</h1>
-			<p>Scan or Click on the qr code to login</p>
-			<a id="qrcode" href="{{href}}"><img src="{{dataUri}}"></a>
-			<div id="buttons">
-				{{#if cancelUrl}}
-				<a href="{{cancelUrl}}" class="button">Cancel</a>
-				{{/if}}
+	
+		</div>
+		<div id="content">
+			<div class="wrap">
+				<h1>UpSats</h1>
+				<p>Scan or Click on the qr code to login</p>
+				<a id="qrcode" href="{{href}}"><img src="{{dataUri}}"></a>
+				<div id="buttons">
+					{{#if cancelUrl}}
+					<a href="{{cancelUrl}}" class="button">Cancel</a>
+					{{/if}}
+				</div>
 			</div>
 		</div>
-	</div>
+	  
+	  </div>
+	
 
 </body>
 </html>

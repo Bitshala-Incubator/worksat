@@ -76,7 +76,8 @@ const Main = () => {
     };
 
     getDevsList();
-  }, []);
+    console.log(selectedFilters)
+  }, [selectedFilters]);
 
   const viewDetails = (id) => {
     navigate("/devProfile", {
@@ -160,24 +161,23 @@ const Main = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {devsList.map((dev) => (
                   <>
-                    <div className=" flex flex-col my-4 md:m-4 border-2 rounded-lg p-5 text-start bg-white">
-                      <div>
+                    <div
+                      onClick={() => {
+                        viewDetails(dev.id);
+                      }}
+                      className=" flex flex-col my-4 md:m-4 border-2 rounded-lg p-5 text-start bg-white"
+                    >
+                      <div className="flex justify-center">
                         {/* <Link to="/devProfile"> */}
-                        <button
-                          onClick={() => {
-                            viewDetails(dev.id);
-                          }}
-                        >
-                          <img
-                            src={
-                              dev.profImgUrl
-                                ? dev.profImgUrl
-                                : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
-                            }
-                            alt="Image"
-                            className=" rounded-full shadow h-auto align-middle border-2"
-                          />
-                        </button>
+                        <img
+                          src={
+                            dev.profImgUrl
+                              ? dev.profImgUrl
+                              : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                          }
+                          alt="Image"
+                          className=" rounded-full shadow h-52 w-52 border-2"
+                        />
                         {/* </Link> */}
                       </div>
                       <div className="text-2xl font-bold my-3">
