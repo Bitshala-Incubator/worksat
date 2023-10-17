@@ -9,6 +9,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 const Main = () => {
+  const [search, setSearch] = useState("");
   let filters = [
     "Figma",
     "Prototyping",
@@ -76,7 +77,7 @@ const Main = () => {
     };
 
     getDevsList();
-    console.log(selectedFilters)
+    console.log(selectedFilters);
   }, [selectedFilters]);
 
   const viewDetails = (id) => {
@@ -109,7 +110,7 @@ const Main = () => {
           </div>
         </div>
         <div className="mx-5">
-          <div className="flex justify-center mt-5 md:hidden">
+          <div className="flex justify-center w-full mt-5 md:hidden">
             <form>
               <label
                 for="default-search"
@@ -139,7 +140,7 @@ const Main = () => {
                   type="search"
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                  required
+                  onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search For Devs"
                 />
               </div>
@@ -159,54 +160,61 @@ const Main = () => {
           <div className="flex justify-center ">
             <div className="flex-col">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-                {devsList.map((dev) => (
-                  <>
-                    <div
-                      onClick={() => {
-                        viewDetails(dev.id);
-                      }}
-                      className=" flex flex-col my-4 md:m-4 border-2 rounded-lg p-5 text-start bg-white"
-                    >
-                      <div className="flex justify-center">
-                        {/* <Link to="/devProfile"> */}
-                        <img
-                          src={
-                            dev.profImgUrl
-                              ? dev.profImgUrl
-                              : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
-                          }
-                          alt="Image"
-                          className=" rounded-full shadow h-52 w-52 border-2"
-                        />
-                        {/* </Link> */}
-                      </div>
-                      <div className="text-2xl font-bold my-3">
-                        {dev.userName}
-                      </div>
-                      <div className="text-xl my-2 ml-5 font-semibold">
-                        {dev.location}
-                      </div>
-                      <div className="border-2 rounded-xl p-3 bg-[#f8fafc]">
-                        {dev.bio}
-                      </div>
-                      <div className="text-xl font-semibold my-3 ml-5">
-                        Skills
-                      </div>
+                {devsList
+                  .filter((dev) => {
+                    return search.toLowerCase() === ""
+                      ? dev
+                      : dev.userName.toLowerCase().includes(search) ||
+                          dev.location.toLowerCase().includes(search);
+                  })
+                  .map((dev) => (
+                    <>
+                      <div
+                        onClick={() => {
+                          viewDetails(dev.id);
+                        }}
+                        className=" flex flex-col my-4 md:m-4 border-2 rounded-lg p-5 text-start bg-white"
+                      >
+                        <div className="flex justify-center">
+                          {/* <Link to="/devProfile"> */}
+                          <img
+                            src={
+                              dev.profImgUrl
+                                ? dev.profImgUrl
+                                : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                            }
+                            alt="Image"
+                            className=" rounded-full shadow h-52 w-52 border-2"
+                          />
+                          {/* </Link> */}
+                        </div>
+                        <div className="text-2xl font-bold my-3">
+                          {dev.userName}{" "}
+                        </div>
+                        <div className="text-xl my-2 ml-5 font-semibold">
+                          {dev.location}
+                        </div>
+                        <div className="border-2 rounded-xl p-3 bg-[#f8fafc]">
+                          {dev.bio}
+                        </div>
+                        <div className="text-xl font-semibold my-3 ml-5">
+                          Skills
+                        </div>
 
-                      <div>
-                        {dev.skills &&
-                          dev.skills.map((skills, idx) => (
-                            <button
-                              className={`button `}
-                              key={`filters-${idx}`}
-                            >
-                              {skills.label}
-                            </button>
-                          ))}
+                        <div>
+                          {dev.skills &&
+                            dev.skills.map((skills, idx) => (
+                              <button
+                                className={`button `}
+                                key={`filters-${idx}`}
+                              >
+                                {skills.label}
+                              </button>
+                            ))}
+                        </div>
                       </div>
-                    </div>
-                  </>
-                ))}
+                    </>
+                  ))}
               </div>
             </div>
           </div>

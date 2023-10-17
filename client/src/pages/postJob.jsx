@@ -153,7 +153,8 @@ const Main = () => {
       try {
         const result = await webln.keysend({
           destination:
-            "03006fcf3312dae8d068ea297f58e2bd00ec1ffe214b793eda46966b6294a53ce6",
+            // "03006fcf3312dae8d068ea297f58e2bd00ec1ffe214b793eda46966b6294a53ce6",
+            "bc1q329d28ly6wkr54kyscn8sdekd3l3aucct0qm5w",
           amount: "100",
           customRecords: {
             34349334: "Post Job",

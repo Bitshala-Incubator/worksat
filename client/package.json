@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@getalby/bitcoin-connect-react": "^2.0.0",
+    "@getalby/lightning-tools": "^4.0.2",
     "axios": "^1.5.1",
     "firebase": "^10.4.0",
     "react": "^18.2.0",

@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "../pages/login";
 import { BsBell } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import Sidebar from "./sidebar";
 import Axios from "axios";
+import { LightningAddress } from "@getalby/lightning-tools";
 
 const NavBar = () => {
-  const [userId, setUserId] = useState("");
+  const [pubkey, setPubkey] = useState("");
+  const ln = new LightningAddress("hello@getalby.com");
 
-  const navigateLogin = () => {
-    window.location.replace("http://localhost:3001/login");
-  };
-  const navigateLogout = () => {
-    Axios({
-      method: "GET",
-      withCredentials: true,
-      url: "http://localhost:3001/logout",
-    }).then((res) => {
-      console.log(res);
-      window.location.reload()
-    });
+  const test = async () => {
+    if (typeof window.webln !== "undefined") {
+      console.log("WebLN is available!");
+      await window.webln.enable();
+
+      await ln.fetch();
+      setPubkey(ln.lnurlpData.rawData.nostrPubkey);
+    }
   };
 
   useEffect(() => {
-    Axios({
-      method: "GET",
-      withCredentials: true,
-      url: "http://localhost:3001/user",
-    }).then((res) => {
-      console.log(res.data.id, "Usdata");
-      setUserId(res.data.id);
-    });
-  }, []);
+    const test = async () => {
+      if (typeof window.webln !== "undefined") {
+        await window.webln.enable();
 
-  console.log(userId, "userId");
+        await ln.fetch();
+        console.log(ln.lnurlpData.rawData.nostrPubkey, "Important Shit");
+        setPubkey(ln.lnurlpData.rawData.nostrPubkey);
+      }
+    };
+
+    test();
+  }, [pubkey]);
+
+
 
   return (
     <>
@@ -86,7 +87,7 @@ const NavBar = () => {
             </form>
           </div>
           <div className="flex justify-end ">
-            {userId ? (
+            {pubkey ? (
               <>
                 <Link to="/postJob">
                   <div className="m-2 bg-[#ede9fe]  text-[#8b5cf6] border px-3 py-2 rounded-lg">
@@ -98,7 +99,6 @@ const NavBar = () => {
                     Makers
                   </div>
                 </Link>
-
                 <Link to="/editProfile">
                   <div className="m-2">
                     <img
@@ -108,9 +108,12 @@ const NavBar = () => {
                     />
                   </div>
                 </Link>
-                <button onClick={navigateLogout} className="m-2 bg-white text-black border px-3 py-2 rounded-lg">
+                {/* <button
+                  onClick={navigateLogout}
+                  className="m-2 bg-white text-black border px-3 py-2 rounded-lg"
+                >
                   Logout
-                </button>
+                </button> */}
               </>
             ) : (
               <>
@@ -120,7 +123,7 @@ const NavBar = () => {
                   </div>
                 </Link>
                 <button
-                  onClick={navigateLogin}
+                  onClick={test}
                   className="m-2 bg-white text-black border px-3 py-2 rounded-lg"
                 >
                   Login
