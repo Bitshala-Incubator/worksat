@@ -277,7 +277,7 @@ const Main = (data) => {
                         <div className="hidden mr-5 md:inline bg-green-200 px-5 font-medium py-2 rounded-3xl text-green-600">
                           Open for work
                         </div>
-                        <button
+                        {/* <button
                           onClick={() => {
                             edit(id);
                           }}
@@ -285,7 +285,7 @@ const Main = (data) => {
                           <div className="mr-10 hidden md:inline bg-green-200 px-5 font-medium py-2 rounded-3xl text-green-600">
                             Edit
                           </div>
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </>
@@ -299,11 +299,11 @@ const Main = (data) => {
                         <div className="hidden mr-5 md:inline bg-green-200 px-5 font-medium py-2 rounded-3xl text-green-600">
                           Open for work
                         </div>
-                        <button
+                        {/* <button
                           onClick={() => {
                             edit(id);
                           }}
-                        ></button>
+                        ></button> */}
                       </div>
                     </div>
                   </>
@@ -315,7 +315,7 @@ const Main = (data) => {
                       <div className="inline md:hidden text-sm p-3 m-1 bg-green-200 rounded-3xl text-green-600">
                         Open for work
                       </div>
-                      <button
+                      {/* <button
                         onClick={() => {
                           edit(id);
                         }}
@@ -323,7 +323,7 @@ const Main = (data) => {
                         <div className="inline md:hidden text-sm p-3 m-1 bg-green-200 rounded-3xl text-green-600">
                           Edit
                         </div>
-                      </button>
+                      </button> */}
                     </div>
                   </>
                 ) : (

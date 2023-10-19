@@ -50,7 +50,7 @@ const NavBar = () => {
               />
             </Link>
           </div>
-          <div className="flex  justify-center">
+          {/* <div className="flex  justify-center">
             <form>
               <label
                 for="default-search"
@@ -85,7 +85,7 @@ const NavBar = () => {
                 />
               </div>
             </form>
-          </div>
+          </div> */}
           <div className="flex justify-end ">
             {pubkey ? (
               <>

@@ -318,7 +318,41 @@ const Jobs = () => {
                             for="list-radio-passport"
                             className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
                           >
+                            Volunteer
+                          </label>
+                        </div>
+                      </li>
+                      <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                        <div className="flex items-center pl-3">
+                          <input
+                            onClick={() => setEmployment("Internship")}
+                            type="radio"
+                            value=""
+                            name="list2-radio"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  "
+                          />
+                          <label
+                            for="list-radio-passport"
+                            className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                          >
                             Internship
+                          </label>
+                        </div>
+                      </li>
+                      <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                        <div className="flex items-center pl-3">
+                          <input
+                            onClick={() => setEmployment("Internship")}
+                            type="radio"
+                            value=""
+                            name="list2-radio"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  "
+                          />
+                          <label
+                            for="list-radio-passport"
+                            className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                          >
+                            Freelance
                           </label>
                         </div>
                       </li>
@@ -428,6 +462,40 @@ const Jobs = () => {
                           </label>
                         </div>
                       </li>
+                      <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                        <div className="flex items-center pl-3">
+                          <input
+                            onClick={() => setLocation("Singapore")}
+                            type="radio"
+                            value=""
+                            name="list3-radio"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 "
+                          />
+                          <label
+                            for="list-radio-passport"
+                            className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                          >
+                            Australia
+                          </label>
+                        </div>
+                      </li>
+                      <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                        <div className="flex items-center pl-3">
+                          <input
+                            onClick={() => setLocation("Singapore")}
+                            type="radio"
+                            value=""
+                            name="list3-radio"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 "
+                          />
+                          <label
+                            for="list-radio-passport"
+                            className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
+                          >
+                            United States
+                          </label>
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -436,7 +504,7 @@ const Jobs = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="flex justify-center mt-5 md:hidden">
+          {/* <div className="flex justify-center mt-5 md:hidden">
             <form>
               <label
                 for="default-search"
@@ -472,7 +540,7 @@ const Jobs = () => {
                 />
               </div>
             </form>
-          </div>
+          </div> */}
 
           <div className="flex flex-col md:grid md:grid-cols-3 lg:hidden mt-5 gap-2">
             <div className="my-1">
@@ -550,7 +618,7 @@ const Jobs = () => {
                   viewDetails(job.id);
                 }}
               >
-                <div className="my-5 m-1 md:mx-10 border bg-white rounded-lg  flex justify-between  items-center">
+                <div className="my-5 cursor-pointer hover:bg-gray-100 m-1 md:mx-10 border bg-white rounded-lg  flex justify-between  items-center">
                   <div className="flex rounded-lg  items-center">
                     <div className=" ">
                       <div>

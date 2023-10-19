@@ -110,7 +110,7 @@ const Main = () => {
           </div>
         </div>
         <div className="mx-5">
-          <div className="flex justify-center w-full mt-5 md:hidden">
+          {/* <div className="flex justify-center w-full mt-5 md:hidden">
             <form>
               <label
                 for="default-search"
@@ -145,7 +145,7 @@ const Main = () => {
                 />
               </div>
             </form>
-          </div>
+          </div> */}
 
           <Select
             className="mt-3 lg:hidden"
@@ -173,7 +173,7 @@ const Main = () => {
                         onClick={() => {
                           viewDetails(dev.id);
                         }}
-                        className=" flex flex-col my-4 md:m-4 border-2 rounded-lg p-5 text-start bg-white"
+                        className=" flex hover:bg-gray-100 cursor-pointer flex-col my-4 md:m-4 border-2 rounded-lg p-5 text-start bg-white"
                       >
                         <div className="flex justify-center">
                           {/* <Link to="/devProfile"> */}

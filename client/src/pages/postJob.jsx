@@ -250,11 +250,9 @@ const Main = () => {
                   >
                     <option>Full Time</option>
                     <option>Part Time</option>
-                    <option>Contractor</option>
-                    <option>Temporary</option>
                     <option>Internship</option>
-                    <option>Per Diem</option>
                     <option>Volunteer</option>
+                    <option>Freelance</option>
                   </select>
                 </div>
 
@@ -285,6 +283,8 @@ const Main = () => {
                     <option>India</option>
                     <option>Indonesia</option>
                     <option>Singapore</option>
+                    <option>Australia</option>
+                    <option>United States</option>
                   </select>
                 </div>
 

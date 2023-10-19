@@ -374,11 +374,9 @@ const Main = () => {
                   >
                     <option>Full Time</option>
                     <option>Part Time</option>
-                    <option>Contractor</option>
-                    <option>Temporary</option>
                     <option>Internship</option>
-                    <option>Per Diem</option>
                     <option>Volunteer</option>
+                    <option>Freelance</option>
                   </select>
                 </div>
 
@@ -437,10 +435,12 @@ const Main = () => {
                     onChange={(e) => setLocation(e.target.value)}
                     className="p-2.5 text-gray-800 w-full bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
                   >
-                    <option>Remote</option>
-                    <option>Indonesia</option>
+                    <option>Global</option>
                     <option>India</option>
+                    <option>Indonesia</option>
                     <option>Singapore</option>
+                    <option>Australia</option>
+                    <option>United States</option>
                   </select>
                 </div>
 
