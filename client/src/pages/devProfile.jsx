@@ -138,6 +138,9 @@ const Main = (data) => {
           alert("You Need to pay the sats in order to reveal the details");
       }
     }
+    else{
+      alert("Seems like you don't have a web-ln supported wallet installed. Please install a supported wallet first.")
+    }
   };
 
   // console.log(devDetail.skills, "devD")

@@ -197,6 +197,7 @@ const Main = () => {
         alert("You need to approve the wallet");
         window.location.reload();
       }
+      
       try {
         const result = await webln.keysend({
           destination:
@@ -236,6 +237,9 @@ const Main = () => {
           alert("You Need to pay the sats in order to post the job");
         setDisabled(false);
       }
+    }
+    else{
+      alert("Seems like you don't have a web-ln supported wallet installed. Please install a supported wallet first.")
     }
 
     // window.location.reload();

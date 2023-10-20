@@ -6,7 +6,7 @@ import { FiMenu } from "react-icons/fi";
 import Sidebar from "./sidebar";
 import Axios from "axios";
 import { LightningAddress } from "@getalby/lightning-tools";
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
 
 const NavBar = () => {
   const [pubkey, setPubkey] = useState("");
@@ -19,6 +19,9 @@ const NavBar = () => {
 
       await ln.fetch();
       setPubkey(ln.lnurlpData.rawData.nostrPubkey);
+    }
+    else{
+      alert("Seems like you don't have a web-ln supported wallet installed. Please install a supported wallet first.")
     }
   };
 
@@ -36,8 +39,6 @@ const NavBar = () => {
     test();
   }, [pubkey]);
 
-
-
   return (
     <>
       <div className="hidden md:inline">
@@ -45,7 +46,7 @@ const NavBar = () => {
           <div className="">
             <Link to="/">
               <img
-                className="h-16 max-w-full"
+                className="h-12 max-w-full"
                 src={logo}
                 alt="image description"
               />
@@ -92,7 +93,7 @@ const NavBar = () => {
               <>
                 <Link to="/postJob">
                   <div className="m-2 bg-[#ede9fe]  text-[#8b5cf6] border px-3 py-2 rounded-lg">
-                    Create
+                    Post Job
                   </div>
                 </Link>
                 <Link to="/browseDevs">
@@ -118,6 +119,11 @@ const NavBar = () => {
               </>
             ) : (
               <>
+                <Link to="/postJob">
+                  <div className="m-2 bg-[#ede9fe]  text-[#8b5cf6] border px-3 py-2 rounded-lg">
+                    Post Job
+                  </div>
+                </Link>
                 <Link to="/browseDevs">
                   <div className="m-2 bg-white text-black border px-3 py-2 rounded-lg">
                     Makers
@@ -139,17 +145,14 @@ const NavBar = () => {
         <div className="flex justify-between items-center">
           <div>
             <Link to="/">
-              <img
-                className="h-10 w-auto"
-                src={logo}
-                alt="image description"
-              />
+              <img className="h-8 w-auto" src={logo} alt="image description" />
             </Link>
           </div>
           <div className="flex">
+            {pubkey?(<>
             <Link to="/postJob">
               <div className=" bg-[#ede9fe] text-sm mr-2 text-[#8b5cf6] border p-1 rounded-lg">
-                Create
+                Post Job
               </div>
             </Link>
             <Link to="/browseDevs">
@@ -170,6 +173,22 @@ const NavBar = () => {
                 />
               </div>
             </Link>
+
+            </>):(<>
+              <Link to="/postJob">
+              <div className=" bg-[#ede9fe] text-sm  text-[#8b5cf6] border p-1 rounded-lg">
+                Post Job
+              </div>
+            </Link>
+            <Link to="/browseDevs">
+              <div className="mx-1 bg-white text-sm text-black border p-1 rounded-lg">
+                Makers
+              </div>
+            </Link>
+            <div className=" bg-white text-sm text-black border p-1 rounded-lg">
+              Login
+            </div>
+            </>)}
           </div>
         </div>
       </div>

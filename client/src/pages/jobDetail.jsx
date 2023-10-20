@@ -19,6 +19,7 @@ const Main = (data) => {
   const jobsCollectionRef = collection(db, "jobs");
   const ref = doc(db, "jobs", id);
   const [showModal, setShowModal] = useState(false);
+  const [turn, setTurn] = useState(false)
 
   useEffect(() => {
     const getJobDetail = async () => {
@@ -36,6 +37,8 @@ const Main = (data) => {
   }, []);
 
   const handleApply = () => {
+    setTurn(true);
+    console.log(turn)
     setShowModal(true);
   };
 
@@ -122,9 +125,11 @@ const Main = (data) => {
                 </div>
                 <div
                   onClick={handleApply}
-                  className="bg-[#8b5cf6] w-1/33 flex justify-center py-1 rounded-lg text-white"
+                  className={turn? "bg-green-500 rounded-lg" : "bg-[#8b5cf6] rounded-lg"}
                 >
-                  Apply
+                  <div className=" w-1/33 flex justify-center py-1  text-white">
+                {turn? 'Applied' : 'Apply'}  
+                    </div>
                 </div>
               </div>
               {showModal ? (
