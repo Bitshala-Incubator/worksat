@@ -23,11 +23,60 @@ const customStyles = {
 };
 
 const optionList = [
-  { value: "rust", label: "Rust" },
-  { value: "javascript", label: "Javascript" },
-  { value: "typescript", label: "Typescript" },
-  { value: "react.js", label: "React.js" },
-  { value: "angular.js", label: "Angular.js" },
+  { value: "HTML", label: "HTML" },
+  { value: "CSS", label: "CSS" },
+  { value: "Javascript", label: "Javascript" },
+  { value: "React", label: "React" },
+  { value: "Node", label: "Node" },
+  { value: "Ember", label: "Ember" },
+  { value: "Angular", label: "Angular" },
+  { value: "Typescript", label: "Typescript" },
+  { value: "Python", label: "Python" },
+  { value: "C++", label: "C++" },
+  { value: "Java", label: "Java" },
+  { value: "Django", label: "Django" },
+  { value: "R", label: "R" },
+  { value: "SEO", label: "SEO" },
+  { value: "SEM", label: "SEM" },
+  { value: "Twitter", label: "Twitter" },
+  { value: "API", label: "API" },
+  { value: "Ruby", label: "Ruby" },
+  { value: "Linux", label: "Linux" },
+  { value: "Git", label: "Git" },
+  { value: "Rust", label: "Rust" },
+  { value: "Figma", label: "Figma" },
+  { value: "SQL", label: "SQL" },
+  { value: "NoSQL", label: "NoSQL" },
+  { value: "React Native", label: "React Native" },
+  { value: "Law", label: "Law" },
+  { value: "Wordpress", label: "Wordpress" },
+  { value: "Youtube", label: "Youtube" },
+  { value: "Excel", label: "Excel" },
+  { value: "Word", label: "Word" },
+  { value: "Powerpoint", label: "Powerpoint" },
+  { value: "Docker", label: "Docker" },
+  { value: "AdobeXD", label: "AdobeXD" },
+  { value: "Jira", label: "Jira" },
+  { value: "Github", label: "Github" },
+  { value: "Google Cloud", label: "Google Cloud" },
+  { value: "AWS", label: "AWS" },
+  { value: "Firebase", label: "Firebase" },
+  { value: "Bitcoin Node", label: "Bitcoin Node" },
+  { value: "Ligtning Node", label: "Ligtning Node" },
+  { value: "CA", label: "CA" },
+  { value: "CFA", label: "CFA" },
+  { value: "Payroll", label: "Payroll" },
+  { value: "ATS", label: "ATS" },
+  { value: "Prompt Writing", label: "Prompt Writing" },
+  { value: "Final Cut Pro", label: "Final Cut Pro" },
+  { value: "Adobe Premier Pro", label: "Adobe Premier Pro" },
+  { value: "Blender", label: "Blender" },
+  { value: "Adobe After Effects", label: "Adobe After Effects" },
+  { value: "Golang", label: "Golang" },
+  { value: "Manual Testing", label: "Manual Testing" },
+  { value: "Automated Testing", label: "Automated Testing" },
+  { value: "Android", label: "Typescript" },
+  { value: "Swift", label: "Swift" },
 ];
 
 const Main = () => {
@@ -58,7 +107,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   const forceNavigate = () => {
-    alert('Log in first')
+    alert("Log in first");
     navigate("/", {});
   };
 
@@ -71,11 +120,9 @@ const Main = () => {
       console.log(res.data.id, "Usdata");
       setUserId(res.data.id);
       if (res.data.id === undefined || res.data.id === "") {
-       
-        forceNavigate()
+        forceNavigate();
       }
     });
-
   }, [userId]);
 
   const handleUpload = (e) => {
@@ -263,13 +310,20 @@ const Main = () => {
                     onChange={(e) => setRole(e.target.value)}
                     className="p-2.5 text-gray-800 w-full bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
                   >
-                    <option>Software Development</option>
-                    <option>Front End</option>
-                    <option>Back End</option>
-                    <option>Full Stack</option>
+                    <option>Frontend Dev</option>
+                    <option>Backend Dev</option>
+                    <option>Full Stack Dev</option>
+                    <option>Dev Ops</option>
+                    <option>Performance Marketing</option>
+                    <option>Social Media & Content</option>
+                    <option>Legal</option>
+                    <option>Finance</option>
+                    <option>HR</option>
+                    <option>UI/UX Designer</option>
+                    <option>Product Manager</option>
+                    <option>Operations</option>
                     <option>Sales</option>
                     <option>Marketing</option>
-                    <option>Non-Tech</option>
                   </select>
                 </div>
 

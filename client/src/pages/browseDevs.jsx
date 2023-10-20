@@ -11,29 +11,120 @@ import { db } from "../config/firebase";
 const Main = () => {
   const [search, setSearch] = useState("");
   let filters = [
-    "Figma",
-    "Prototyping",
-    "Writing",
+    "HTML",
     "CSS",
-    "React.js",
+    "Javascript",
+    "React",
+    "Node",
+    "Ember",
+    "Angular",
+    "Typescript",
+    "Python",
+    "C Plus Plus",
+    "Python",
+    "Java",
+    "Django",
+    "R",
+    "SEO",
+    "SEM",
+    "Twitter",
+    "API",
+    "Ruby",
+    "Linux",
+    "Git",
+    "Rust",
+    "Figma",
+    "SQL",
+    "NoSQL",
+    "React Native",
+    "Law",
     "Wordpress",
-    "Principle App",
-    "UX Design",
-    "UX Research",
-    "User Testing",
+    "React Native",
+    "Youtube",
+    "Excel",
+    "Word",
+    "Powerpoint",
+    "Docker",
+    "AdobeXD",
+    "Jira",
+    "Github",
+    "Google Cloud",
+    "AWS",
+    "Firebase",
+    " Bitcoin Node",
+    "Lightning Node",
+    "CA",
+    "CFA",
+    "Payroll",
+    "ATS",
+    "Prompt Writing",
+    "Final Cut Pro",
+    "Adobe Premier Pro",
+    "Blender",
+    "Adobe After Effects",
+    "Golang",
+    "Manual Testing",
+    "Automated Testing",
+    "Android",
+    "Swift",
+    ,
   ];
 
   const rolesList = [
-    { value: "Figma ", label: "🌈 Figma " },
-    { value: "Prototyping", label: "💄 Prototyping " },
-    { value: "Writing ", label: "💻 Writing " },
-    { value: " CSS", label: "🌈 CSS " },
-    { value: " UX Design", label: "🌈 UX Design " },
-    { value: " UX Research", label: "🌈 UX Research " },
-    { value: " User Testing", label: "🌈 User Testing " },
-    { value: "React.js ", label: "🎉 React.js " },
-    { value: "Wordpress", label: "🦄 Wordpress " },
-    { value: "Principle App ", label: "🚨 Principle App " },
+    { value: "HTML", label: "HTML" },
+  { value: "CSS", label: "CSS" },
+  { value: "Javascript", label: "Javascript" },
+  { value: "React", label: "React" },
+  { value: "Node", label: "Node" },
+  { value: "Ember", label: "Ember" },
+  { value: "Angular", label: "Angular" },
+  { value: "Typescript", label: "Typescript" },
+  { value: "Python", label: "Python" },
+  { value: "C++", label: "C++" },
+  { value: "Java", label: "Java" },
+  { value: "Django", label: "Django" },
+  { value: "R", label: "R" },
+  { value: "SEO", label: "SEO" },
+  { value: "SEM", label: "SEM" },
+  { value: "Twitter", label: "Twitter" },
+  { value: "API", label: "API" },
+  { value: "Ruby", label: "Ruby" },
+  { value: "Linux", label: "Linux" },
+  { value: "Git", label: "Git" },
+  { value: "Rust", label: "Rust" },
+  { value: "Figma", label: "Figma" },
+  { value: "SQL", label: "SQL" },
+  { value: "NoSQL", label: "NoSQL" },
+  { value: "React Native", label: "React Native" },
+  { value: "Law", label: "Law" },
+  { value: "Wordpress", label: "Wordpress" },
+  { value: "Youtube", label: "Youtube" },
+  { value: "Excel", label: "Excel" },
+  { value: "Word", label: "Word" },
+  { value: "Powerpoint", label: "Powerpoint" },
+  { value: "Docker", label: "Docker" },
+  { value: "AdobeXD", label: "AdobeXD" },
+  { value: "Jira", label: "Jira" },
+  { value: "Github", label: "Github" },
+  { value: "Google Cloud", label: "Google Cloud" },
+  { value: "AWS", label: "AWS" },
+  { value: "Firebase", label: "Firebase" },
+  { value: "Bitcoin Node", label: "Bitcoin Node" },
+  { value: "Ligtning Node", label: "Ligtning Node" },
+  { value: "CA", label: "CA" },
+  { value: "CFA", label: "CFA" },
+  { value: "Payroll", label: "Payroll" },
+  { value: "ATS", label: "ATS" },
+  { value: "Prompt Writing", label: "Prompt Writing" },
+  { value: "Final Cut Pro", label: "Final Cut Pro" },
+  { value: "Adobe Premier Pro", label: "Adobe Premier Pro" },
+  { value: "Blender", label: "Blender" },
+  { value: "Adobe After Effects", label: "Adobe After Effects" },
+  { value: "Golang", label: "Golang" },
+  { value: "Manual Testing", label: "Manual Testing" },
+  { value: "Automated Testing", label: "Automated Testing" },
+  { value: "Android", label: "Typescript" },
+  { value: "Swift", label: "Swift" },
   ];
 
   const [selectRole, setSelectRole] = useState();
@@ -78,7 +169,7 @@ const Main = () => {
 
     getDevsList();
     console.log(selectedFilters);
-  }, [selectedFilters]);
+  }, []);
 
   const viewDetails = (id) => {
     navigate("/devProfile", {
@@ -161,12 +252,12 @@ const Main = () => {
             <div className="flex-col">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {devsList
-                  .filter((dev) => {
-                    return search.toLowerCase() === ""
-                      ? dev
-                      : dev.userName.toLowerCase().includes(search) ||
-                          dev.location.toLowerCase().includes(search);
-                  })
+                  // .filter((dev) => {
+                  //   return search.toLowerCase() === ""
+                  //     ? dev
+                  //     : dev.userName.toLowerCase().includes(search) ||
+                  //         dev.location.toLowerCase().includes(search);
+                  // })
                   .map((dev) => (
                     <>
                       <div
