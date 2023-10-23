@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../components/navbar";
-import Sidebar from "../components/sidebar";
 import Select from "react-select";
-import { Tab, Tabs } from "../components/tabs";
-import BrowseJobs from "./browseJobs";
-import BrowseDevs from "./browseDevs";
-import RolesAndSkills from "./rolesAndSkills";
 import { db, img } from "../config/firebase";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection } from "firebase/firestore";
+import {getDocs, addDoc, updateDoc, collection, query, where, or, doc, getDoc} from "firebase/firestore";
 import { LightningAddress } from "@getalby/lightning-tools";
 
 const skillOptionList = [
@@ -87,58 +82,50 @@ const roleOptionList = [
 ];
 
 const Main = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState();
-  const [userName, setUserName] = useState("Developer");
+  const [userName, setUserName] = useState("");
   const [lightningAddress, setLightningAddress] = useState("");
-  const [bio, setBio] = useState(
-    "I'm a dedicated developer with a passion for creating innovative solutions. My expertise spans web and mobile development, system architecture, and database design. I'm committed to staying up-to-date with industry trends to deliver cutting-edge software that enhances the user experience. Let's collaborate on your next tech project!"
-  );
-  const [availability, setAvailability] = useState("Full Time");
-  const [role, setRole] = useState();
-  const [location, setLocation] = useState("Remote");
+  const [bio, setBio] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [role, setRole] = useState([]);
+  const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
-  const [skills, setSkills] = useState();
+  const [skills, setSkills] = useState([]);
   const [profImgUrl, setProfImgUrl] = useState(
     "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-1-800x800.jpg"
   );
   const [coverImgUrl, setCoverImgUrl] = useState("");
-  const [disabled, setDisabled] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState([]);
   const [pubkey, setPubkey] = useState("");
 
-  const ln = new LightningAddress("hello@getalby.com");
-
-  let subtitle;
-
-  let filters = [
-    "Figma",
-    "Prototyping",
-    "Writing",
-    "CSS",
-    "React.js",
-    "Wordpress",
-    "Principle App",
-    "UX Design",
-    "UX Research",
-    "User Testing",
-  ];
-  // const [selectedOptions, setSelectedOptions] = useState();
-
-  const handleFilterButtonClick = (selectedCategory) => {
-    if (selectedFilters.includes(selectedCategory)) {
-      let filters = selectedFilters.filter((el) => el !== selectedCategory);
-      setSelectedFilters(filters);
-    } else {
-      setSelectedFilters([...selectedFilters, selectedCategory]);
-    }
-  };
-  function handleSelect(data) {
-    setSkills(data);
+  let userData;
+  if (window.localStorage.getItem('upsats-user-data-id')) {
+    getDoc(doc(db, "devs", window.localStorage.getItem('upsats-user-data-id'))).then((doc) => {
+      if (doc.exists()) {
+        userData = doc.data();
+        setUserName(userData.userName);
+        setLightningAddress(userData.lightningAddress);
+        setBio(userData.bio);
+        setAvailability(userData.availability);
+        setRole(userData.roles);
+        setLocation(userData.location);
+        setEmail(userData.email);
+        setTwitter(userData.twitter);
+        setLinkedin(userData.linkedin);
+        setGithub(userData.github);
+        setSkills(userData.skills);
+        setProfImgUrl(userData.profImgUrl);
+        setCoverImgUrl(userData.coverImgUrl);
+        setPubkey(userData.pubkey);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    });
   }
+
+  const ln = new LightningAddress("hello@getalby.com");
 
   useEffect(() => {
     const getKey = async () => {
@@ -150,24 +137,19 @@ const Main = () => {
   }, []);
 
   const handleProfUpload = (e) => {
-    console.log(e.target.files[0]);
     const imgs = ref(img, `Devs/Profile/${v4()}`);
     uploadBytes(imgs, e.target.files[0]).then((data) => {
-      console.log(data, "data");
       getDownloadURL(data.ref).then((val) => {
-        console.log(val, "val");
+        console.log(val)
         setProfImgUrl(val);
       });
     });
   };
 
   const handleCoverUpload = (e) => {
-    console.log(e.target.files[0]);
     const imgs = ref(img, `Devs/Cover/${v4()}`);
     uploadBytes(imgs, e.target.files[0]).then((data) => {
-      console.log(data, "data2");
       getDownloadURL(data.ref).then((val) => {
-        console.log(val, "Val2");
         setCoverImgUrl(val);
       });
     });
@@ -176,27 +158,56 @@ const Main = () => {
   const devsCollectionRef = collection(db, "devs");
 
   const handlePost = async () => {
-    setDisabled(true);
+    console.log(profImgUrl)
     try {
-      await addDoc(devsCollectionRef, {
-        userName: userName,
-        lightningAddress: lightningAddress,
-        bio: bio,
-        availability: availability,
-        profImgUrl: profImgUrl,
-        coverImgUrl: coverImgUrl,
-        roles: role,
-        location: location,
-        skills: skills,
-        email: email,
-        twitter: twitter,
-        linkedin: linkedin,
-        github: github,
-        pubkey: pubkey,
-      });
-      console.log("done");
-      alert("data added successfully");
-      window.location.reload();
+      const serachQuery = query(
+        devsCollectionRef,
+        or(where("userName", "==", userName), where("email", "==", email)),
+        );
+      const querySnapshot = await getDocs(serachQuery);
+
+        if (querySnapshot.docs.length === 0) {
+          const data = {
+            userName: userName,
+            lightningAddress: lightningAddress,
+            bio: bio,
+            availability: availability,
+            profImgUrl: profImgUrl,
+            coverImgUrl: coverImgUrl,
+            roles: role,
+            location: location,
+            skills: skills,
+            email: email,
+            twitter: twitter,
+            linkedin: linkedin,
+            github: github,
+            pubkey: pubkey,
+          };
+          const addDocResponse = await addDoc(devsCollectionRef, data);
+          window.localStorage.setItem('upsats-user-data-id', addDocResponse.id);
+          alert('Profile Created Successfully');
+        } else {
+          const documentData = querySnapshot.docs[0].data();
+          const data = {
+            userName: userName.length === 0 ? documentData.userName : userName,
+            lightningAddress: lightningAddress.length === 0 ? documentData.lightningAddress : lightningAddress,
+            bio: bio.length === 0 ? documentData.bio : bio,
+            availability: availability.length === 0 ? documentData.availability : availability,
+            profImgUrl: profImgUrl.length === 0 ? documentData.profImgUrl : profImgUrl,
+            coverImgUrl: coverImgUrl.length === 0 ? documentData.coverImgUrl : coverImgUrl,
+            roles: role.length === 0 ? documentData.roles : role,
+            location: location.length === 0 ? documentData.location : location,
+            skills: skills.length === 0 ? documentData.skills : skills,
+            email: email.length === 0 ? documentData.email : email,
+            twitter: twitter.length === 0 ? documentData.twitter : twitter,
+            linkedin: linkedin.length === 0 ? documentData.linkedin : linkedin,
+            github: github.length === 0 ? documentData.github : github,
+            pubkey: pubkey.length === 0 ? documentData.pubkey : pubkey,
+          };
+          await updateDoc(doc(db, "devs", querySnapshot.docs[0].id), data);
+          window.localStorage.setItem('upsats-user-data-id', querySnapshot.docs[0].id);
+          alert('Profile Updated Successfully');
+        }
     } catch (err) {
       console.error(err);
     }
@@ -233,7 +244,7 @@ const Main = () => {
                           />
                         </svg>
                         <p className="mb-2 text-sm text-gray-500">
-                          <span className="font-semibold">Click to upload</span>{" "}
+                          <span className="font-semibold">Click to upload cover image</span>{" "}
                         </p>
                         <p className="text-xs text-gray-500">
                           SVG, PNG, JPG or GIF
@@ -388,6 +399,8 @@ const Main = () => {
 
               <input
                 required
+                placeholder="Developer"
+                value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 id="default-input"
@@ -399,6 +412,8 @@ const Main = () => {
               </div>
               <input
                 required
+                placeholder="lnbc1pvjluezsp5zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygspp5qqqsyqcyq5rqwzqfqqqsyqcyq5rqwzqfqqqsyqcyq5rqwzqfqypqdpl2pkx2ctnv5sxxmmwwd5kgetjypeh2ursdae8g6twvus8g6rfwvs8qun0dfjkxaq9qrsgq357wnc5r2ueh7ck6q93dj32dlqnls087fxdwk8qakdyafkq3yap9us6v52vjjsrvywa6rt52cm9r9zqt8r2t7mlcwspyetp5h2tztugp9lfyql"
+                value={lightningAddress}
                 onChange={(e) => setLightningAddress(e.target.value)}
                 type="text"
                 id="default-input"
@@ -408,6 +423,8 @@ const Main = () => {
               <div className="my-2 text-xl font-semibold">Bio</div>
               <textarea
                 required
+                value={bio}
+                placeholder="I'm a dedicated developer with a passion for creating innovative solutions. My expertise spans web and mobile development, system architecture, and database design. I'm committed to staying up-to-date with industry trends to deliver cutting-edge software that enhances the user experience. Let's collaborate on your next tech project!"
                 onChange={(e) => setBio(e.target.value)}
                 id="message"
                 rows="4"
@@ -418,6 +435,8 @@ const Main = () => {
               <div className="my-2">
                 <select
                   required
+                  placeholder="Full Time"
+                  value={availability}
                   onChange={(e) => setAvailability(e.target.value)}
                   className="p-2.5 text-gray-800 bg-white border rounded-md shadow-sm w-full outline-none appearance-none focus:border-indigo-600"
                 >
@@ -454,9 +473,10 @@ const Main = () => {
                       required
                       className="w-full"
                       options={roleOptionList}
-                      placeholder="Select Stack"
-                      value={role}
-                      onChange={setRole}
+                      placeholder="Fullstack Dev"
+                      value={roleOptionList.filter((el) => role.includes(el.value))}
+                      onChange={(data) => {
+                        setRole(data.map((el) => el.value));}}
                       isSearchable={true}
                       isMulti
                     />
@@ -481,6 +501,8 @@ const Main = () => {
               <div className="my-1">
                 <select
                   required
+                  placeholder="Global"
+                  value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   className="p-2.5 text-gray-800 w-full bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
                 >
@@ -500,9 +522,10 @@ const Main = () => {
                     required
                     className="w-full"
                     options={skillOptionList}
-                    placeholder="Select Stack"
-                    value={skills}
-                    onChange={handleSelect}
+                    placeholder="Rust"
+                    value={skillOptionList.filter((el) => skills.includes(el.value))}
+                    onChange={(data) => {
+                      setSkills(data.map((el) => el.value));}}
                     isSearchable={true}
                     isMulti
                   />
@@ -513,8 +536,10 @@ const Main = () => {
 
               <input
                 required
+                placeholder="satoshin@gmx.com"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                type="text"
+                type="email"
                 id="default-input"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               />
@@ -523,6 +548,8 @@ const Main = () => {
 
               <input
                 required
+                placeholder="https://twitter.com/bitcoin"
+                value={twitter}
                 onChange={(e) => setTwitter(e.target.value)}
                 type="text"
                 id="default-input"
@@ -533,6 +560,8 @@ const Main = () => {
 
               <input
                 required
+                placeholder="https://www.linkedin.com/in/bitcoin/"
+                value={linkedin}
                 onChange={(e) => setLinkedin(e.target.value)}
                 type="text"
                 id="default-input"
@@ -543,6 +572,8 @@ const Main = () => {
 
               <input
                 required
+                placeholder="https://www.github.com/your_username"
+                value={github}
                 onChange={(e) => setGithub(e.target.value)}
                 type="text"
                 id="default-input"
@@ -608,7 +639,7 @@ const Main = () => {
                   className="border-2 text-center bg-[#8b5cf6] text-white px-4 py-2 mt-1 rounded-lg"
                   onClick={handlePost}
                 >
-                  Create Profile
+                  Update Profile
                 </button>
               </div>
             </div>
