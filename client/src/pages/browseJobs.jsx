@@ -761,10 +761,6 @@ const Jobs = () => {
                       <button className={`button`}>💄 {job.role}</button>
                     </div>
                   </div>
-
-                  <button>
-                    <div className="p-3 m-3 rounded-lg bg-gray-200">Apply</div>
-                  </button>
                 </div>
               </div>
             ))}
