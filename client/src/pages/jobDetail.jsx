@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Sidebar from "../components/sidebar";
+import React, { useState } from "react";
 import NavBar from "../components/navbar";
 import {
   SlSocialTwitter,
@@ -10,36 +8,43 @@ import {
 } from "react-icons/sl";
 import { useLocation } from "react-router-dom";
 import { db } from "../config/firebase";
-import { collection, getDoc, doc, getDocs } from "firebase/firestore";
+import {getDoc, doc, updateDoc, arrayUnion} from "firebase/firestore";
 
 const Main = (data) => {
   const [jobDetail, setJobDetail] = useState([]);
   const id = data.data;
 
-  const jobsCollectionRef = collection(db, "jobs");
   const ref = doc(db, "jobs", id);
-  const [showModal, setShowModal] = useState(false);
   const [turn, setTurn] = useState(false)
+  const [hasAlreadyApplied, setHasAlreadyApplied] = useState(false);
 
-  useEffect(() => {
-    const getJobDetail = async () => {
-      try {
-        const data = await getDoc(ref);
-        const filteredData = data.data();
-        console.log(filteredData);
-        setJobDetail(filteredData);
-      } catch (err) {
-        console.error(err);
+  const getJobDetail = async () => {
+    try {
+      const data = await getDoc(ref);
+      const filteredData = data.data();
+      const userId = window.localStorage.getItem('upsats-user-data-id');
+      if (filteredData.applicants && userId) {
+        if (filteredData.applicants.includes(userId)) {
+          setHasAlreadyApplied(true);
+        }
       }
-    };
+      setJobDetail(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    getJobDetail();
-  }, []);
+  getJobDetail();
 
-  const handleApply = () => {
+  const handleApply = async () => {
     setTurn(true);
-    console.log(turn)
-    setShowModal(true);
+    const userId = window.localStorage.getItem('upsats-user-data-id');
+    if (userId && !hasAlreadyApplied) {
+        await updateDoc(ref, {
+            applicants: arrayUnion(userId)
+        });
+        setHasAlreadyApplied(true);
+    }
   };
 
   return (
@@ -132,45 +137,6 @@ const Main = (data) => {
                     </div>
                 </div>
               </div>
-              {showModal ? (
-                <>
-                  <div className="justify-center backdrop-blur-sm items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                      {/*content*/}
-                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                        {/*header*/}
-                        <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                          <h3 className="text-3xl font-semibold">
-                          Applied Successfully
-                          </h3>
-                          <button
-                            className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                            onClick={() => setShowModal(false)}
-                          >
-                            <span className="bg-transparent text-red-600 opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                              X
-                            </span>
-                          </button>
-                        </div>
-                        {/*body*/}
-                        
-                        {/*footer*/}
-                        <div className="flex items-center justify-center p-6 border-t border-solid border-blueGray-200 rounded-b">
-                          <button
-                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                            type="button"
-                            onClick={() => setShowModal(false)}
-                          >
-                            Close
-                          </button>
-                         
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                </>
-              ) : null}
             </div>
           </div>
         ) : (
@@ -213,12 +179,17 @@ const Main = (data) => {
                 </a>
               </div>
             </div>
-            <div
-              onClick={handleApply}
-              className="bg-[#8b5cf6] flex justify-center py-1 rounded-lg text-white"
-            >
-              Apply
-            </div>
+            {hasAlreadyApplied ? (
+                <div
+                  className="bg-[#33cc5e] flex justify-center py-1 rounded-lg text-white"
+              >
+                Applied
+              </div>) : (<div
+                  onClick={handleApply}
+                  className="bg-[#8b5cf6] flex justify-center py-1 rounded-lg text-white"
+              >
+                Apply
+              </div>)}
           </div>
         </div>
       </div>
