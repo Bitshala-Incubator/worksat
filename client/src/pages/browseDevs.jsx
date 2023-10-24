@@ -299,7 +299,7 @@ const Main = () => {
                                 className={`button `}
                                 key={`filters-${idx}`}
                               >
-                                {skills.label}
+                                {skills}
                               </button>
                             ))}
                         </div>
