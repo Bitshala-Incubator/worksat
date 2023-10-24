@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import {getDocs, addDoc, updateDoc, collection, query, where, or, doc, getDoc} from "firebase/firestore";
 import { LightningAddress } from "@getalby/lightning-tools";
+import {useNavigate} from "react-router-dom";
 
 const skillOptionList = [
   { value: "HTML", label: "HTML" },
@@ -100,36 +101,43 @@ const Main = () => {
   const [pubkey, setPubkey] = useState("");
 
   let userData;
-  if (window.localStorage.getItem('upsats-user-data-id')) {
-    getDoc(doc(db, "devs", window.localStorage.getItem('upsats-user-data-id'))).then((doc) => {
-      if (doc.exists()) {
-        userData = doc.data();
-        setUserName(userData.userName);
-        setLightningAddress(userData.lightningAddress);
-        setBio(userData.bio);
-        setAvailability(userData.availability);
-        setRole(userData.roles);
-        setLocation(userData.location);
-        setEmail(userData.email);
-        setTwitter(userData.twitter);
-        setLinkedin(userData.linkedin);
-        setGithub(userData.github);
-        setSkills(userData.skills);
-        setProfImgUrl(userData.profImgUrl);
-        setCoverImgUrl(userData.coverImgUrl);
-        setPubkey(userData.pubkey);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    });
-  }
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (window.localStorage.getItem('upsats-user-data-id')) {
+      console.log(window.localStorage.getItem('upsats-user-data-id'));
+      getDoc(doc(db, "devs", window.localStorage.getItem('upsats-user-data-id'))).then((doc) => {
+        if (doc.exists()) {
+          userData = doc.data();
+          setUserName(userData.userName);
+          setLightningAddress(userData.lightningAddress);
+          setBio(userData.bio);
+          setAvailability(userData.availability);
+          setRole(userData.roles);
+          setLocation(userData.location);
+          setEmail(userData.email);
+          setTwitter(userData.twitter);
+          setLinkedin(userData.linkedin);
+          setGithub(userData.github);
+          setSkills(userData.skills);
+          setProfImgUrl(userData.profImgUrl);
+          setCoverImgUrl(userData.coverImgUrl);
+          setPubkey(userData.pubkey);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      });
+    } else {
+      navigate("/login");
+    }
+  }, []);
 
   const ln = new LightningAddress("hello@getalby.com");
 
   useEffect(() => {
     const getKey = async () => {
       await ln.fetch();
+      console.log(ln.lnurlpData.rawData.nostrPubkey);
       setPubkey(ln.lnurlpData.rawData.nostrPubkey);
     };
 
@@ -158,7 +166,6 @@ const Main = () => {
   const devsCollectionRef = collection(db, "devs");
 
   const handlePost = async () => {
-    console.log(profImgUrl)
     try {
       const serachQuery = query(
         devsCollectionRef,
@@ -212,6 +219,11 @@ const Main = () => {
       console.error(err);
     }
   };
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('upsats-user-data-id');
+    navigate("/");
+  }
 
   return (
     <>
@@ -636,10 +648,16 @@ const Main = () => {
                 </div>
 
                 <button
-                  className="border-2 text-center bg-[#8b5cf6] text-white px-4 py-2 mt-1 rounded-lg"
+                  className="border-2 text-center bg-[#8b5cf6] text-white px-4 py-2 mt-2 mb-2 rounded-lg"
                   onClick={handlePost}
                 >
                   Update Profile
+                </button>
+                <button
+                    className="border-2 border-purple-400 text-center text-purple-700 px-4 py-2 mt-1 rounded-lg"
+                    onClick={handleLogout}
+                >
+                  Logout
                 </button>
               </div>
             </div>

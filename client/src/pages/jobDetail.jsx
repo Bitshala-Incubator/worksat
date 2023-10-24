@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import {useEffect, useState} from "react";
 import NavBar from "../components/navbar";
 import {
   SlSocialTwitter,
@@ -19,22 +19,27 @@ const Main = (data) => {
   const [hasAlreadyApplied, setHasAlreadyApplied] = useState(false);
 
   const getJobDetail = async () => {
-    try {
-      const data = await getDoc(ref);
-      const filteredData = data.data();
-      const userId = window.localStorage.getItem('upsats-user-data-id');
-      if (filteredData.applicants && userId) {
-        if (filteredData.applicants.includes(userId)) {
-          setHasAlreadyApplied(true);
-        }
-      }
-      setJobDetail(filteredData);
-    } catch (err) {
-      console.error(err);
-    }
+
   };
 
   getJobDetail();
+
+  useEffect(() => {
+    try {
+      getDoc(ref).then((data) => {
+        const filteredData = data.data();
+        const userId = window.localStorage.getItem('upsats-user-data-id');
+        if (filteredData.applicants && userId) {
+          if (filteredData.applicants.includes(userId)) {
+            setHasAlreadyApplied(true);
+          }
+        }
+        setJobDetail(filteredData);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
 
   const handleApply = async () => {
     setTurn(true);
@@ -44,6 +49,7 @@ const Main = (data) => {
             applicants: arrayUnion(userId)
         });
         setHasAlreadyApplied(true);
+        alert('Applied successfully! Please check your email for further instructions.');
     }
   };
 

@@ -9,9 +9,9 @@ import DevProfile from "./pages/devProfile.jsx";
 import JobDetail from "./pages/jobDetail.jsx";
 import BrowseJobs from "./pages/browseJobs.jsx";
 import BrowseDevs from "./pages/browseDevs.jsx";
-import NavBar from "./components/navbar.jsx";
 import EditProfile from "./pages/editProfile.jsx";
 import EditProfile2 from "./pages/editProfile2.jsx";
+import Signup from "./pages/signup.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
   {
     path: "/devProfile",
@@ -50,11 +54,6 @@ const router = createBrowserRouter([
     path: "/editProfile2",
     element: <EditProfile2 />,
   },
- 
-  // {
-  //   path: "/ed",
-  //   element: <Ed />,
-  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

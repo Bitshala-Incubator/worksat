@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Modal from "react-modal";
+import { useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import NavBar from "../components/navbar";
 import Select from "react-select";
-import Sidebar from "../components/sidebar";
-import JobDetail from "./jobDetail";
 import { db, img } from "../config/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { addDoc, collection } from "firebase/firestore";
 import Axios from "axios";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 
 const optionList = [
   { value: "HTML", label: "HTML" },

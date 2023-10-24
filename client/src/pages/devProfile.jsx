@@ -1,49 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Modal from "react-modal";
+import { useEffect, useState } from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import NavBar from "../components/navbar";
-import DevSideBar from "../components/devSidebar";
-import Sidebar from "../components/sidebar";
-import { LuCopy } from "react-icons/lu";
 import { FiMousePointer } from "react-icons/fi";
 import "../components/styles.css";
 import {
   FaDiscord,
   FaTwitter,
   FaGithub,
-  FaGlobe,
   FaLinkedin,
-  FaFacebook,
 } from "react-icons/fa";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { LightningAddress } from "@getalby/lightning-tools";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 
 const Main = (data) => {
-  let filters = [
-    "Figma",
-    "Prototyping",
-    "Writing",
-    "CSS",
-    "React.js",
-    "Wordpress",
-    "Principle App",
-    "UX Design",
-    "UX Research",
-    "User Testing",
-  ];
-  const [selectedFilters, setSelectedFilters] = useState([]);
   const id = data.data;
   const [devDetail, setDevDetail] = useState([]);
   const ln = new LightningAddress("hello@getalby.com");
@@ -123,13 +94,10 @@ const Main = (data) => {
         window.location.reload();
       }
       try {
-        const result = await webln.keysend({
-          destination: "bc1q329d28ly6wkr54kyscn8sdekd3l3aucct0qm5w",
-          amount: "100",
-          customRecords: {
-            34349334: "Post Job",
-          },
+        const invoice = await window.webln.makeInvoice({
+            amount: 100,
         });
+        const result = await window.webln.sendPayment(invoice.paymentRequest);
         console.log(result);
         alert("paid successfully");
         setPaid(true);
@@ -381,7 +349,7 @@ const Main = (data) => {
                   devDetail.roles.map((role, idx) => (
                     <>
                       <button className="button" key={`filters-${idx}`}>
-                        {role.label}
+                        {role}
                       </button>
                     </>
                   ))}
@@ -396,7 +364,7 @@ const Main = (data) => {
                     devDetail.skills.map((skill, idx) => (
                       <>
                         <button className="button" key={`filters-${idx}`}>
-                          {skill.label}
+                          {skill}
                         </button>
                       </>
                     ))}
