@@ -734,26 +734,24 @@ const Jobs = () => {
                   viewDetails(job.id);
                 }}
               >
-                <div className="my-5 cursor-pointer hover:bg-gray-100 m-1 md:mx-10 border bg-white rounded-lg  flex justify-between  items-center">
-                  <div className="flex rounded-lg  items-center">
-                    <div className=" ">
-                      <div>
-                        <img
-                          className="md:mx-5 m-2 border rounded-full h-20 w-20"
-                          src={
-                            job.imgUrl
-                              ? job.imgUrl
-                              : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
-                          }
-                          alt="Image"
-                        />
-                      </div>
+                <div className="my-5 cursor-pointer hover:bg-gray-100 m-1 md:mx-10 shadow-lg bg-white rounded-lg  flex justify-between  items-center">
+                  <div className="flex rounded-lg w-full items-center">
+                    <div className="lg:w-2/12">
+                      <img
+                        className="md:mx-5 m-2 border rounded-full lg:h-28 h-20 w-20 lg:w-28"
+                        src={
+                          job.imgUrl
+                            ? job.imgUrl
+                            : "https://st5.depositphotos.com/28687978/64498/v/450/depositphotos_644985208-stock-illustration-oev-logo-oev-letter-oev.jpg"
+                        }
+                        alt="Image"
+                      />
                     </div>
-                    <div className="flex-col p-3">
+                    <div className="flex-col lg:w-5/12 lg:text-xl px-3 text-start font-medium font">
                       <div>{job.position}</div>
                       <div>{job.companyName}</div>
                     </div>
-                    <div className="hidden md:inline m-5 pl-10 justify-center">
+                    <div className="hidden md:inline m-5 pl-10 justify-end">
                       <button className={`button`}>
                         🌈 {job.employmentType}
                       </button>
