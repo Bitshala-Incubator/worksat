@@ -1,4 +1,4 @@
-# upsats
+# worksat
 For bitcoin worker and gigs, sign in and payment via ln/nostr
 
 ## Roadmap 
