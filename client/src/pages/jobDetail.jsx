@@ -9,6 +9,7 @@ import {
 import { useLocation } from "react-router-dom";
 import { db } from "../config/firebase";
 import {getDoc, doc, updateDoc, arrayUnion} from "firebase/firestore";
+import axios from "axios";
 
 const Main = (data) => {
   const [jobDetail, setJobDetail] = useState([]);
@@ -40,6 +41,12 @@ const Main = (data) => {
       console.error(err);
     }
   }, []);
+
+  axios.get('http://localhost:3001/health').then((res) => {
+    console.log(res);
+  }).catch((err) => {
+    console.error(err);
+  });
 
   const handleApply = async () => {
     setTurn(true);
