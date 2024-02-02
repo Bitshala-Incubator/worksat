@@ -1,13 +1,9 @@
 import "./App.css";
-import Home from "./pages/home";
-import NavBar from "./components/navbar";
 
 function App() {
-
   return (
     <>
-    {/* <NavBar /> */}
-      <Home />
+      <h1>New Front Page</h1>
     </>
   );
 }
