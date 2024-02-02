@@ -1,18 +1,169 @@
 import { useEffect, useState } from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/navbar";
 import { FiMousePointer } from "react-icons/fi";
 import "../components/styles.css";
-import {
-  FaDiscord,
-  FaTwitter,
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaDiscord, FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { LightningAddress } from "@getalby/lightning-tools";
+import { Similar } from "../components/devProfile/similarMakers";
 
+const Paid = (id) => {
+  const abc = id
+  const [paid, setPaid] = useState(true);
+  const [devDetail, setDevDetail] = useState([]);
+  // const ref = doc(db, "devs", id);
+
+  useEffect(() => {
+    const getDevDetail = async () => {
+      try {
+        const data = await getDoc(ref);
+        const filteredData = data.data();
+        setDevDetail(filteredData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getDevDetail();
+  }, []);
+
+  const handlePaid = async () => {
+    if (typeof window.webln !== "undefined") {
+      try {
+        await window.webln.enable();
+      } catch (err) {
+        console.log(err);
+        alert("You need to approve the wallet");
+        window.location.reload();
+      }
+
+      try {
+        const invoice = await window.webln.makeInvoice({
+          amount: 100,
+        });
+        const result = await window.webln.sendPayment(invoice.paymentRequest);
+        console.log(result);
+        alert("paid successfully");
+        setPaid(true);
+      } catch (err) {
+        console.log(err),
+          alert("You Need to pay the sats in order to reveal the details");
+      }
+    } else {
+      alert(
+        "Seems like you don't have a web-ln supported wallet installed. Please install a supported wallet first."
+      );
+    }
+  };
+
+  return (
+    <div className="hidden lg:inline">
+      <div>
+        <div className={` h-screen p-3 duration-300 w-96  relative`}>
+          <div className="bg-white p-5  border rounded-lg text-start">
+            <div className="flex flex-col text-center justify-center">
+              <div className="text-xl my-3 font-semibold">
+                Unlock Contact Details ⚡
+              </div>
+              <hr />
+              {paid ? (
+                <>
+                  <div className=" blur-0 ">
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaTwitter size={40} />
+                      <a href={devDetail.twitter} target="_blank">
+                        <div className="text-xl">{devDetail.userName}</div>
+                      </a>
+                    </div>
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaGithub size={40} />
+                      <a href={devDetail.github} target="_blank">
+                        <div className="text-xl">{devDetail.userName}</div>
+                      </a>
+                    </div>
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaLinkedin size={40} />
+                      <a href={devDetail.linkedin} target="_blank">
+                        <div className="text-xl">{devDetail.userName}</div>
+                      </a>
+                    </div>
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaDiscord size={40} />
+                      <a href={devDetail.discord} target="_blank">
+                        <div className="text-xl">{devDetail.userName}</div>
+                      </a>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className=" blur-sm ">
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaTwitter size={40} />
+                      <div className="text-xl">{devDetail.userName}</div>
+                    </div>
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaGithub size={40} />
+                      <div className="text-xl">{devDetail.userName}</div>
+                    </div>
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaLinkedin size={40} />
+                      <div className="text-xl">{devDetail.userName}</div>
+                    </div>
+                    <div className="flex m-3 justify-center gap-3 items-center">
+                      <FaDiscord size={40} />
+
+                      <div className="text-xl">{devDetail.userName}</div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handlePaid}
+                    className="bg-[#8b5cf6] justify-center items-center flex mt-5  px-3 py-2 rounded-lg text-white"
+                  >
+                    <div>Pay To Unlock The Detail</div>
+                    <div className="ml-2">
+                      <FiMousePointer className="rotate-90" />
+                    </div>
+                  </button>
+                </>
+              )}
+
+              {/* <div>
+                    <img
+                      className="p-5"
+                      src="https://glacierfoods.com/wp-content/uploads/2021/12/lightning-node-a-qrcode.png"
+                    />
+                  </div>
+
+                  <div className="border mx-3 my-2 text-sm p-1 font-thin rounded-lg">
+                    Scan this code or copy + paste it to your lightning wallet.
+                    Or click to login with your browser’s wallet.
+                  </div>
+
+                  <div className="flex justify-between my-2">
+                    <div className="bg-[#8b5cf6] justify-center items-center flex  px-3 py-2 rounded-lg text-white">
+                      <div>Scan to pay</div>
+                      <div className="ml-2">
+                        <FiMousePointer className="rotate-90" />
+                      </div>
+                    </div>
+                    <div className="flex  bg-[#f5f3ff] px-8 py-2 justify-center rounded-lg items-center text-[#7c3aed]">
+                      <div className="px-2">Copy</div>
+                      <LuCopy className="" />
+                    </div>
+                  </div>
+                  <div className="border-2 px-4 py-2 mt-1 rounded-lg">
+                    Don’t have a lightning wallet?
+                  </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Main = (data) => {
   const id = data.data;
@@ -20,7 +171,7 @@ const Main = (data) => {
   const ln = new LightningAddress("hello@getalby.com");
   const [pubkey, setPubkey] = useState("");
   const navigate = useNavigate();
-  const [paid, setPaid] = useState(false);
+  const [paid, setPaid] = useState(true);
 
   const ref = doc(db, "devs", id);
   const [devsList, setDevsList] = useState([]);
@@ -31,7 +182,6 @@ const Main = (data) => {
       try {
         const data = await getDoc(ref);
         const filteredData = data.data();
-        console.log(filteredData, "fdata");
         setDevDetail(filteredData);
       } catch (err) {
         console.error(err);
@@ -46,7 +196,6 @@ const Main = (data) => {
           id: doc.id,
         }));
         setDevsList(filteredData);
-        console.log(filteredData, "fdata2");
         // console.log("id", filteredData[0].id);
         // setId(filteredData[0].id);
         // console.log(id);
@@ -93,9 +242,10 @@ const Main = (data) => {
         alert("You need to approve the wallet");
         window.location.reload();
       }
+
       try {
         const invoice = await window.webln.makeInvoice({
-            amount: 100,
+          amount: 100,
         });
         const result = await window.webln.sendPayment(invoice.paymentRequest);
         console.log(result);
@@ -105,9 +255,10 @@ const Main = (data) => {
         console.log(err),
           alert("You Need to pay the sats in order to reveal the details");
       }
-    }
-    else{
-      alert("Seems like you don't have a web-ln supported wallet installed. Please install a supported wallet first.")
+    } else {
+      alert(
+        "Seems like you don't have a web-ln supported wallet installed. Please install a supported wallet first."
+      );
     }
   };
 
@@ -116,43 +267,8 @@ const Main = (data) => {
   return (
     <>
       <div className="flex ">
-        <div className="hidden lg:inline">
-          <div className={` p-3 duration-300 hidden xl:inline justify-center`}>
-            <div className="bg-white m-2 w-80 border rounded-lg text-start">
-              <div className="flex flex-col m-3 text-start justify-center">
-                <div className="text-xl my-3 mx-5 font-semibold">
-                  Similar Makers 🥳
-                </div>
+        <Similar />
 
-                {devsList.map((dev) => (
-                  <>
-                  {/* {console.log(dev.skills.map(()=>(<>
-                  {}
-                  </>)))} */}
-                    <button
-                      onClick={() => {
-                        viewDetails(dev.id);
-                      }}
-                      className="flex items-center "
-                    >
-                      <div className="m-2">
-                        <img
-                          src={dev.profImgUrl}
-                          alt="..."
-                          className=" rounded-full shadow h-12 w-12 align-middle border-2"
-                        />
-                      </div>
-                      <div className="font-medium text-lg mx-3">
-                        {dev.userName}
-                      </div>
-                    </button>
-                    <hr />
-                  </>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="w-full ">
           <div className="flex justify-center mt-5 md:hidden">
             <form>
@@ -491,109 +607,7 @@ const Main = (data) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="hidden lg:inline">
-          <div>
-            <div className={` h-screen p-3 duration-300 w-96  relative`}>
-              <div className="bg-white p-5  border rounded-lg text-start">
-                <div className="flex flex-col text-center justify-center">
-                  <div className="text-xl my-3 font-semibold">
-                    Unlock Contact Details ⚡
-                  </div>
-                  <hr />
-                  {paid ? (
-                    <>
-                      <div className=" blur-0 ">
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaTwitter size={40} />
-                          <a href={devDetail.twitter} target="_blank">
-                            <div className="text-xl">{devDetail.userName}</div>
-                          </a>
-                        </div>
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaGithub size={40} />
-                          <a href={devDetail.github} target="_blank">
-                            <div className="text-xl">{devDetail.userName}</div>
-                          </a>
-                        </div>
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaLinkedin size={40} />
-                          <a href={devDetail.linkedin} target="_blank">
-                            <div className="text-xl">{devDetail.userName}</div>
-                          </a>
-                        </div>
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaDiscord size={40} />
-                          <a href={devDetail.discord} target="_blank">
-                            <div className="text-xl">{devDetail.userName}</div>
-                          </a>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className=" blur-sm ">
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaTwitter size={40} />
-                          <div className="text-xl">{devDetail.userName}</div>
-                        </div>
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaGithub size={40} />
-                          <div className="text-xl">{devDetail.userName}</div>
-                        </div>
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaLinkedin size={40} />
-                          <div className="text-xl">{devDetail.userName}</div>
-                        </div>
-                        <div className="flex m-3 justify-center gap-3 items-center">
-                          <FaDiscord size={40} />
-
-                          <div className="text-xl">{devDetail.userName}</div>
-                        </div>
-                      </div>
-                      <button
-                        onClick={handlePaid}
-                        className="bg-[#8b5cf6] justify-center items-center flex mt-5  px-3 py-2 rounded-lg text-white"
-                      >
-                        <div>Pay To Unlock The Detail</div>
-                        <div className="ml-2">
-                          <FiMousePointer className="rotate-90" />
-                        </div>
-                      </button>
-                    </>
-                  )}
-
-                  {/* <div>
-                    <img
-                      className="p-5"
-                      src="https://glacierfoods.com/wp-content/uploads/2021/12/lightning-node-a-qrcode.png"
-                    />
-                  </div>
-
-                  <div className="border mx-3 my-2 text-sm p-1 font-thin rounded-lg">
-                    Scan this code or copy + paste it to your lightning wallet.
-                    Or click to login with your browser’s wallet.
-                  </div>
-
-                  <div className="flex justify-between my-2">
-                    <div className="bg-[#8b5cf6] justify-center items-center flex  px-3 py-2 rounded-lg text-white">
-                      <div>Scan to pay</div>
-                      <div className="ml-2">
-                        <FiMousePointer className="rotate-90" />
-                      </div>
-                    </div>
-                    <div className="flex  bg-[#f5f3ff] px-8 py-2 justify-center rounded-lg items-center text-[#7c3aed]">
-                      <div className="px-2">Copy</div>
-                      <LuCopy className="" />
-                    </div>
-                  </div>
-                  <div className="border-2 px-4 py-2 mt-1 rounded-lg">
-                    Don’t have a lightning wallet?
-                  </div> */}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Paid/>
         </div>
       </div>
     </>
@@ -603,7 +617,6 @@ const Main = (data) => {
 const DevProfile = (props) => {
   const location = useLocation();
   const data = location.state.id;
-  console.log(data);
   return (
     <>
       <div>
